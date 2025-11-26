@@ -53,7 +53,7 @@ export const InputDateField: React.FC<InputDateFieldProps> = ({
             placeholderText={placeholder}
             dateFormat={dateFormat}
             className={clsx(
-              "h-10 w-full shadow-sm rounded-sm border-[0.5px] border-gray-300 bg-transparent px-4 outline-none placeholder:text-sm focus-within:border-primary-200 transition-colors duration-300 disabled:bg-gray-100",
+              "h-10 w-full rounded-sm border-[0.5px] border-gray-300 bg-transparent px-4 outline-none placeholder:text-sm focus-within:border-primary-200 transition-colors duration-300 disabled:bg-gray-100",
               hasError && "border-red-500",
               className
             )}
