@@ -1,6 +1,6 @@
 "use client";
-import { CalendarAdd } from "iconsax-react";
 import { ChangeEvent, useMemo, useState } from "react";
+import { CalendarAdd } from "iconsax-react";
 import { Plus } from "lucide-react";
 
 import PatientRegistrationModal from "../features/dashboard/components/modals/NewPatientModal";
