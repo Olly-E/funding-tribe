@@ -46,19 +46,19 @@ export const Faq = ({ faqData }: faqDataProps) => {
                   {question.title}
                 </p>
               </div>
-              <div className="rounded-br-[21px] sm:rounded-br-[30px] border border-black centered h-10 w-10 min-w-10 sm:h-[50px] sm:min-h-[50px] sm:min-w-[50px] group-hover:bg-black transition-colors duration-1000">
+              <div className="rounded-br-[21px] sm:rounded-br-[30px] border border-black centered h-10 w-10 min-w-10 sm:h-[50px] sm:min-h-[50px] sm:min-w-[50px] group-hover:bg-black transition-colors duration-500">
                 <div className="size-[30px] min-w-[30px] overflow-hidden">
                   <ArrowDown
                     size={18}
                     className={clsx(
-                      "flex gap-3 mx-auto -translate-y-4 group-hover:translate-y-1.5 min-w-[18px] transition-all duration-1000 text-black group-hover:text-white",
+                      "flex gap-3 mx-auto -translate-y-4 group-hover:translate-y-1.5 min-w-[18px] transition-all duration-500 text-black group-hover:text-white",
                       isActive ? "rotate-180" : "rotate-0"
                     )}
                   />
                   <ArrowDown
                     size={18}
                     className={clsx(
-                      "flex gap-3 mx-auto group-hover:translate-y-4 -translate-y-3 transition-all duration-1000 min-w-[18px] text-black group-hover:text-white",
+                      "flex gap-3 mx-auto group-hover:translate-y-4 -translate-y-3 transition-all duration-500 min-w-[18px] text-black group-hover:text-white",
                       isActive ? "rotate-180" : "rotate-0"
                     )}
                   />
@@ -68,7 +68,7 @@ export const Faq = ({ faqData }: faqDataProps) => {
             </div>
             <div
               className={clsx(
-                "overflow-hidden transition-all duration-1000",
+                "overflow-hidden transition-all duration-500",
                 isActive ? "max-h-[300px]" : "max-h-0 py-0"
               )}
             >

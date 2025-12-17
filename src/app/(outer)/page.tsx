@@ -14,7 +14,7 @@ import heroImg from "../../../public/heroImg.png";
 export default function Home() {
   return (
     <div>
-      <section className="pt-[63px] pl-6 sm:pl-[50px]">
+      <section className="pt-20 lg:pt-[63px] pl-6 sm:pl-[50px]">
         <div className="">
           <h1 className="uppercase lg:w-[780px]">
             When ideas worth building stop short because of Time, Funding, or
@@ -82,7 +82,7 @@ export default function Home() {
       </section>
       <div className="border-t-black border-t" />
       <section className="mt-[68px]">
-        <div className="flex items-center gap-2.5 pl-6 sm:pl-[50px]  sm:mb-[88px]">
+        <div className="flex items-center gap-2.5 pl-6 sm:pl-[50px] mb-10 sm:mb-[88px]">
           <div className="size-[15px] min-w-[15px] bg-black" />
           <p className="text-left w-full">FUNDED PROJECTS</p>
         </div>

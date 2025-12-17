@@ -49,7 +49,7 @@ const Navbar = () => {
   } = useComponentVisible();
   return (
     <div className="">
-      <div className="h-[50px] bg-white min-h-[30px] lg:h-auto xl:h-[30px] flex w-full pr-6 sm:pr-[50px] lg:pr-0 justify-between lg:justify-normal relative z-2">
+      <div className="h-[50px] fixed bg-white min-h-[30px] lg:h-auto xl:h-[30px] flex w-full pr-6 sm:pr-[50px] lg:pr-0 justify-between lg:justify-normal lg:relative z-2">
         <Link
           href="/"
           className="pl-6 sm:px-[50px] self-center flex items-center w-fit h-full"
@@ -82,35 +82,49 @@ const Navbar = () => {
           />
         </div>
       </div>
-      <div className="border-b-black border-b relative z-2" />
+      <div className="border-b-black border-b fixed top-[50px] lg:top-0 w-full lg:relative z-2" />
       <div
         ref={ref}
         className={clsx(
-          "fixed h-screen top-0 w-[300px] pt-[50px] overflow-hidden lg:hidden bg-white border-r border-r-black left-0 transition-[width,padding] duration-500 ease-in-out z-1"
+          "fixed flex flex-col justify-between h-screen top-0 w-[300px] pt-[50px] overflow-hidden lg:hidden bg-white border-r border-r-black left-0 transition-[width,padding] duration-500 ease-in-out z-1"
         )}
         style={{
           clipPath: isComponentVisible ? "inset(0 0 0 0)" : "inset(0 100% 0 0)",
           transition: "clip-path 300ms ease-in-out",
         }}
       >
-        {NAV_LINKS.map((link) => {
-          return (
-            <Link
-              href={link.href}
-              className="group relative w-full h-[69px] inline-block"
-              key={link.id}
-            >
-              <div className="flex items-center pl px-6 h-full">
-                <p className="group-hover:text-white duration-500 transition-color text-sm text-left w-full">
-                  {link.name}
-                </p>
-                <div className="size-[7px] group-hover:bg-white bg-black duration-500 transition-color" />
-                <div className="absolute h-0 w-full group-hover:h-full bg-black transition-all duration-200 left-0 -z-1" />
-              </div>
-              <div className="border-b border-b-black" />
-            </Link>
-          );
-        })}
+        <div className="">
+          {NAV_LINKS.map((link) => {
+            return (
+              <Link
+                href={link.href}
+                className="group relative w-full h-[69px] inline-block"
+                key={link.id}
+              >
+                <div className="flex items-center pl px-6 h-full">
+                  <p className="group-hover:text-white duration-500 transition-color text-sm text-left w-full">
+                    {link.name}
+                  </p>
+                  <div className="size-[7px] group-hover:bg-white bg-black duration-500 transition-color" />
+                  <div className="absolute h-0 w-full group-hover:h-full bg-black transition-all duration-200 left-0 -z-1" />
+                </div>
+                <div className="border-b border-b-black" />
+              </Link>
+            );
+          })}
+        </div>
+        <div>
+          <div className="border-b border-b-black" />
+          <p className="text-xs uppercase py-4"> info@fundingtribe.co.uk</p>
+          <div className="border-b border-b-black" />
+          <p className="text-xs uppercase py-4">
+            Level 33, 25 Canada Square, Canary Wharf, London, E14 5LB 
+          </p>
+          <div className="border-b border-b-black" />
+          <p className="text-xs uppercase py-4">+44(0) 20 39047188 </p>
+          <div className="border-b border-b-black" />
+          <p className="text-xs uppercase py-4">© 2025 FUNDING TRIBE</p>
+        </div>
       </div>
     </div>
   );
