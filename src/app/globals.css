@@ -54,7 +54,7 @@ body {
 
 
 h1 {
-  @apply font-extrabold text-[35px] md:text-6xl lg:text-[64px] leading-[100%] lg:leading-[120%]
+  @apply font-extrabold text-[35px] md:text-4xl lg:text-[64px] leading-[100%] lg:leading-[120%]
 }
 
 .container {

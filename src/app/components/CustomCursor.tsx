@@ -61,7 +61,7 @@ const CustomCursor = ({ isModalOpen = false }: CustomCursorProps) => {
 
   return (
     <motion.div
-      className="pointer-events-none fixed top-0 left-0 z-[9999]
+      className="pointer-events-none fixed top-0 left-0 z-9999
                  flex items-center justify-center
                  h-4 w-4 rounded-full
                  bg-white mix-blend-difference"
