@@ -56,3 +56,26 @@ body {
 h1 {
   @apply font-extrabold text-[35px] md:text-6xl lg:text-[64px] leading-[100%] lg:leading-[120%]
 }
+
+.container {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding-left: 80px;
+  padding-right: 80px;
+}
+
+@media (max-width: 1440px) {
+  .container {
+    padding-left: 50px;
+    padding-right: 50px;
+    width: 100%;
+  }
+}
+
+@media (max-width: 640px) {
+  .container {
+    padding-left: 24px;
+    padding-right: 24px;
+    width: 100%;
+  }
+}

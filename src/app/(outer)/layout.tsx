@@ -1,6 +1,7 @@
 import { Metadata } from "next";
 import Navbar from "../layouts/Navbar";
 import Footer from "../layouts/Footer";
+import CustomCursor from "../components/CustomCursor";
 
 export const metadata: Metadata = {
   title: "Funding Tribe",

@@ -14,7 +14,7 @@ import heroImg from "../../../public/heroImg.png";
 export default function Home() {
   return (
     <div>
-      <section className="pt-20 lg:pt-[63px] pl-6 sm:pl-[50px]">
+      <section className="pt-20 lg:pt-[60px] pl-6 sm:pl-[50px]">
         <div className="">
           <h1 className="uppercase lg:w-[780px]">
             When ideas worth building stop short because of Time, Funding, or

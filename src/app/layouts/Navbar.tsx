@@ -7,6 +7,7 @@ import { useComponentVisible } from "../hooks/useComponentVisible";
 import HamburgerMenu from "../components/HamburgerMenu";
 
 import logo from "../../../public/logo.svg";
+import CustomCursor from "../components/CustomCursor";
 
 const Navbar = () => {
   const NAV_LINKS = [
@@ -49,6 +50,7 @@ const Navbar = () => {
   } = useComponentVisible();
   return (
     <div className="">
+      <CustomCursor isModalOpen={isComponentVisible} />
       <div className="h-[50px] fixed bg-white min-h-[30px] lg:h-auto xl:h-[30px] flex w-full pr-6 sm:pr-[50px] lg:pr-0 justify-between lg:justify-normal lg:relative z-2">
         <Link
           href="/"
@@ -86,7 +88,7 @@ const Navbar = () => {
       <div
         ref={ref}
         className={clsx(
-          "fixed flex flex-col justify-between h-screen top-0 w-[300px] pt-[50px] overflow-hidden lg:hidden bg-white border-r border-r-black left-0 transition-[width,padding] duration-500 ease-in-out z-1"
+          "fixed flex modal flex-col justify-between h-screen top-0 w-[300px] pt-[50px] overflow-hidden lg:hidden bg-white border-r border-r-black left-0 transition-[width,padding] duration-500 ease-in-out z-1"
         )}
         style={{
           clipPath: isComponentVisible ? "inset(0 0 0 0)" : "inset(0 100% 0 0)",
