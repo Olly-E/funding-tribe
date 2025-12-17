@@ -1,9 +1,6 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+
 .PhoneInputInput {
   @apply bg-transparent;
   display: flex;
@@ -11,10 +8,30 @@
   outline: none;
 }
 
+body {
+  background: #F7F6F1;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #050505;
+  border-radius: 40px;
+}
+::-webkit-scrollbar-track {
+  background-color: #FAFAFA;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none !important;
+}
+
 
 @theme {
-  --color-primary: #0B0C7D;
-  --color-black: #051438;
+  --color-white: #F7F6F1;
+  --color-black: #000000;
   --color-primary-light: #D7E3FC;
   --color-secondary: #EDF0F8;
   --color-tertiary: #677597;
@@ -35,6 +52,7 @@
   @apply flex items-center justify-center;
 }
 
-.button-hover {
-  @apply duration-200 transition-colors hover:bg-primary/10
+
+h1 {
+  @apply font-extrabold text-[35px] md:text-6xl lg:text-[64px] leading-[100%] lg:leading-[120%]
 }

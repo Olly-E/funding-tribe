@@ -210,7 +210,7 @@ React.PropsWithChildren<TableProps<DataType>>) => {
                             // Using explicit proportional widths to align with flex body rows
                             className={clsx(
                               "cursor-pointer p-4 text-left text-xs font-semibold text-gray-400 transition duration-500 ease-in-out md:text-sm",
-                              index === 0 && 'pl-[60px]',
+                              index === 0 && "pl-[60px]",
                               getColumnWidthClasses(index)
                             )}
                             key={header.id}
@@ -352,51 +352,6 @@ React.PropsWithChildren<TableProps<DataType>>) => {
           </div>
         )}
       </div>
-
-      <style jsx>{`
-        /* This custom CSS is crucial to override the default HTML table structure 
-          and simulate the appearance from the image where each row looks like a card 
-          with vertical spacing.
-        */
-
-        .bg-gray-50 table {
-          border-collapse: separate;
-          border-spacing: 0 10px; /* Crucial: sets vertical spacing between rows */
-        }
-
-        .bg-gray-50 thead tr {
-          margin-bottom: 0;
-          box-shadow: none; /* Remove shadow from header */
-        }
-
-        .bg-gray-50 thead th {
-          border-bottom: none; /* Remove border under header */
-          padding-top: 0;
-          padding-bottom: 0;
-          white-space: nowrap;
-        }
-
-        .bg-gray-50 tbody tr {
-          /* Resetting default row styles */
-          background-color: transparent !important;
-          border: none !important;
-
-          width: 100%;
-        }
-
-        .bg-gray-50 tbody td {
-          border-bottom: none !important; /* Remove bottom border */
-          border-left: none !important; /* Remove left border */
-          padding-top: 15px;
-          padding-bottom: 15px;
-        }
-
-        /* Override the hover/odd row styling which conflicts with the card design */
-        .bg-gray-50 tbody tr:nth-child(even),
-        .bg-gray-50 tbody tr:nth-child(odd) {
-          background-color: transparent !important;
-        }
-      `}</style>
     </>
   );
 };

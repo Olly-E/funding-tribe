@@ -2,6 +2,7 @@ import Link from "next/link";
 import React from "react";
 import clsx from "clsx";
 import { Loader } from "./Loader";
+import AnimatedArrow from "./AnimatedArrow";
 
 interface ButtonProps {
   variant?:
@@ -24,6 +25,7 @@ interface ButtonProps {
   target?: string;
   ariaLabel?: string;
   size?: "sm" | "md" | "lg";
+  showArrow?: boolean;
 }
 
 export const Button: React.FC<ButtonProps> = ({
@@ -39,6 +41,7 @@ export const Button: React.FC<ButtonProps> = ({
   href,
   target,
   ariaLabel,
+  showArrow = false,
 }) => {
   const Tag = as === "button" ? "button" : Link;
 
@@ -49,7 +52,7 @@ export const Button: React.FC<ButtonProps> = ({
   const sizeClass = {
     sm: "px-2 py-1 text-xs",
     md: "px-4 py-2 text-sm",
-    lg: "px-[20px] sm:px-[34px] sm:h-[40px] text-xs sm:text-base",
+    lg: "px-[10px] h-[42px] text-sm sm:text-base",
   };
 
   const closeIcon = (
@@ -89,15 +92,15 @@ export const Button: React.FC<ButtonProps> = ({
       target={as === "link" ? target : undefined}
       aria-label={ariaLabel}
       className={clsx(
-        className,
-        "rounded-[10px] max-h-10 sm:rounded-[10px] justify-center font-medium sm:font-semibold whitespace-nowrap w-fit focus:outline-blue-state disabled:cursor-not-allowed gap-2 disabled:opacity-70 cursor-pointer flex items-center transition-colors duration-100 ",
-        variant === "primary" && "bg-primary text-white ",
+        "rounded-br-[15px] max-h-[42px] text-black hover:text-white hover:bg-black duration-500  justify-center whitespace-nowrap w-fit focus:outline-blue-state disabled:cursor-not-allowed gap-2 disabled:opacity-70 cursor-pointer flex items-center transition-colors ",
+        variant === "primary" && "bg-white ",
         variant === "secondary" && "bg-white text-black",
-        variant === "outline" && "border border-purple-2 text-purple-2",
+        variant === "outline" && "border",
         "bg-none border border-black justify-center",
         (variant === "close" || variant === "back") &&
           "text-white bg-white/10 border border-black overflow-hidden rounded-full w-[38px] min-w-[38px] h-[38px]",
-        variant !== "close" && variant !== "back" && sizeClass[size]
+        variant !== "close" && variant !== "back" && sizeClass[size],
+        className
       )}
       disabled={disabled}
       onClick={onClick}
@@ -109,6 +112,7 @@ export const Button: React.FC<ButtonProps> = ({
         : variant === "back"
           ? backIcon
           : children}
+      {showArrow && <AnimatedArrow />}
     </Tag>
   );
 };
