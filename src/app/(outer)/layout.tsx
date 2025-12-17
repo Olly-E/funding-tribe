@@ -3,8 +3,8 @@ import Navbar from "../layouts/Navbar";
 import Footer from "../layouts/Footer";
 
 export const metadata: Metadata = {
-  title: "Dashboard | Plural Health",
-  description: "Building better healthcare",
+  title: "Funding Tribe",
+  description: "",
 };
 
 export default function ExternalLayout({
