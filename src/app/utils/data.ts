@@ -128,3 +128,48 @@ export const STAFF_DATA = [
       "Ian is a Chartered Accountant with over 40 years’ experience in business growth, finance, and dispute resolution. Former Managing Director and board member at Rickard Luckin, he now consults for select clients in the property and construction industries.",
   },
 ];
+
+export const FUNDED_TYPE = [
+  {
+    id: "0.01",
+    title: "Land Owners",
+    description:
+      "We partner with landowners who want to unlock the full value of their property. Whether it has planning or not, we bring the funding and expertise to move it forward and share the uplift.",
+  },
+  {
+    id: "0.02",
+    title: "Developers",
+    description:
+      "We work with experienced and new developers who need capital or support to deliver projects faster and better — without taking on expensive loans.",
+  },
+  {
+    id: "0.03",
+    title: "Investors",
+    description:
+      "We offer opportunities for investors to back real developments, not just numbers on paper — sharing transparent returns through real, completed projects.",
+  },
+  {
+    id: "0.04",
+    title: "Builders & Contractors",
+    description:
+      "We collaborate with trusted builders who want to grow with us — building at cost in return for a share in the profit.",
+  },
+  {
+    id: "0.05",
+    title: "Property Owners",
+    description:
+      "We help owners of existing buildings or underused assets transform their spaces through refurbishment, conversion, or redevelopment.",
+  },
+  {
+    id: "0.06",
+    title: "Architects & Planning Consultants",
+    description:
+      "We work with professionals who understand design, compliance, and planning. Together, we make sure every project gets approval and achieves maximum value.",
+  },
+  {
+    id: "0.07",
+    title: "Joint Venture Partners",
+    description:
+      "We believe in win-win ventures. Our joint venture partners share the vision, and we share the success.",
+  },
+];

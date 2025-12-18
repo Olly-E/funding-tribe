@@ -1,10 +1,8 @@
-import { ArrowUp } from "lucide-react";
 import Image from "next/image";
-import Link from "next/link";
-import clsx from "clsx";
 
+import LetConnect from "@/app/components/LetConnect";
+import StaffGrid from "@/app/components/StaffGrid";
 import { Button } from "@/app/components/Button";
-import { STAFF_DATA } from "@/app/utils/data";
 
 import aboutHero from "../../../../public/aboutHero.webp";
 import about2Img from "../../../../public/about2Img.webp";
@@ -86,57 +84,10 @@ const page = () => {
           <div className="size-[15px] min-w-[15px] bg-black" />
           <p className="text-left w-full whitespace-nowrap">MEET OUR TEAM</p>
         </div>
-        <div className="grid grid-cols-1 xs:grid-cols-2 lg:grid-cols-3 mt-[70px]">
-          {STAFF_DATA.map((data) => {
-            return (
-              <div
-                key={data.id}
-                className="min-h-[197px] sm:min-h-[432px] border border-black overflow-hidden relative group"
-              >
-                <Image
-                  src={data.img}
-                  alt={data.name}
-                  fill
-                  className="object-cover"
-                />
-                <div className="max-h-[50px] lg:max-h-[60px] border-t border-t-black absolute bottom-0 pt-2 w-full left-0 bg-white z-1 group-hover:max-h-[300px] transition-all duration-1000">
-                  <div className="flex gap-2 sm:gap-3 items-center px-2 md:px-5 py-2 text-[10px] md:text-xs lg:text-base">
-                    <strong className="whitespace-nowrap">{data.name}</strong>{" "}
-                    {data.position && (
-                      <span className="text-[4px] sm:text-[10px]">&#9679;</span>
-                    )}
-                    <span className="whitespace-nowrap">{data.position}</span>
-                  </div>
-                  <p className="mt-2 px-2 md:px-5 pb-4 text-[10px] md:text-xs lg:text-base">
-                    {data.history}
-                  </p>
-                </div>
-              </div>
-            );
-          })}
-        </div>
+        <StaffGrid />
         <div className="border-t-black border-t" />
 
-        <div className="flex items-center gap-2 sm:gap-5 group my-[165px] justify-center nx-auto w-fit mx-auto">
-          <Link
-            href=""
-            className="text-black group whitespace-nowrap inline-block font-bold text-[32px] sm:text-[64px] underline"
-          >
-            LET&apos;S CONNECT
-          </Link>
-          <div className="size-10 min-w-10 sm:size-[86px] sm:min-w-[86px] overflow-hidden">
-            <ArrowUp
-              className={clsx(
-                "flex size-9 sm:size-[78px] gap-3 mx-auto sm:translate-y-[10%] sm:translate-x-[10%] group-hover:translate-x-[80%] group-hover:translate-y-[-80%] min-w-[18px] transition-all duration-500 rotate-45"
-              )}
-            />
-            <ArrowUp
-              className={clsx(
-                "flex gap-3 size-9 sm:size-[78px] mx-auto group-hover:-translate-y-[90%] group-hover:translate-x-[5%] translate-x-[-82%] sm:translate-x-[-72%] -translate-y-2 sm:-translate-y-2 transition-all duration-500 min-w-[18px] rotate-45"
-              )}
-            />
-          </div>
-        </div>
+        <LetConnect />
       </section>
     </div>
   );

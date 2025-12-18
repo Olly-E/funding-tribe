@@ -102,16 +102,16 @@ const Footer = () => {
         </div>
       </div>
       <div className="border-t border-t-white" />
-      <div className="sm:h-[102px] py-10 grid grid-cols-2 sm:grid-cols-3 text-xs items-center pl-6 sm:pl-[50px] text-white">
-        <Link href="" className="pl-0.5">
+      <div className="sm:h-[102px] xs:space-y-0 space-y-10 py-10 sm:py-0 gap-4 gap-y-10 xs:grid xs:grid-cols-2 sm:grid-cols-3 text-xs items-center pl-6 sm:pl-[50px] text-white">
+        <Link href="" className="pl-0.5 uppercase inline-block">
           info@fundingtribe.co.uk
         </Link>
-        <Link href="" className="pl-6 sm:pl-[53px]">
+        <Link href="" className="xs:pl-6 block sm:pl-[53px]">
           +44(0) 20 39047188
         </Link>
         <Link
           href=""
-          className="max-w-[169px] sm:max-w-[273px] mt-10 sm:mt-0 sm:pl-[50.5px] uppercase col-span-2 sm:col-span-1"
+          className="max-w-[169px] inline-block sm:max-w-[273px] sm:mt-0 sm:pl-[50.5px] uppercase col-span-2 sm:col-span-1"
         >
           Level 33, 25 Canada Square, Canary Wharf, London, E14 5LB 
         </Link>
@@ -119,10 +119,10 @@ const Footer = () => {
       <div className="border-t border-t-white" />
       <div className="sm:h-[102px] grid grid-cols-2 sm:grid-cols-3 text-xs items-center sm:pl-[50px] text-white">
         <div className="flex flex-col-reverse sm:flex-row order-3 sm:order-1 justify-between items-center h-full col-span-2 sm:col-span-1">
-          <p className="pl-0.5 text-center sm:text-start w-full h-[74px]">
+          <p className="pl-0.5 text-center sm:text-start w-full h-[74px] pt-7">
             © 2025 FUNDING TRIBE
           </p>
-          <div className="border-t border-t-white w-full sm:border-r sm:border-r-white h-full" />
+          <div className="border-t border-t-white w-full sm:w-auto sm:border-r sm:border-r-white h-0 sm:h-full" />
         </div>
         <div className="flex justify-between h-[76px] sm:h-full items-center order-2">
           <Link href="" className="pl-6 sm:pl-[53px]">
