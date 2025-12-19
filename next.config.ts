@@ -1,5 +1,6 @@
 import type { NextConfig } from "next";
 
+
 const nextConfig: NextConfig = {
   reactCompiler: true,
   experimental: {
@@ -7,6 +8,14 @@ const nextConfig: NextConfig = {
   },
   redirects: async () => {
     return [];
+  },
+  images: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "picsum.photos",
+      },
+    ],
   },
 };
 

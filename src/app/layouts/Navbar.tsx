@@ -8,6 +8,7 @@ import HamburgerMenu from "../components/HamburgerMenu";
 
 import logo from "../../../public/logo.svg";
 import CustomCursor from "../components/CustomCursor";
+import { usePathname } from "next/navigation";
 
 const Navbar = () => {
   const NAV_LINKS = [
@@ -48,6 +49,8 @@ const Navbar = () => {
     dropDownButtonRef,
     handleClickOnDropDownButton,
   } = useComponentVisible();
+  const pathname = usePathname();
+
   return (
     <div className="">
       <CustomCursor isModalOpen={isComponentVisible} />
@@ -67,11 +70,26 @@ const Navbar = () => {
                 key={link.id}
               >
                 <div className="border-l h-full border-l-black mr-[7px]" />
-                <p className="group-hover:text-white duration-500 transition-color text-xs text-left w-full">
+                <p
+                  className={clsx(
+                    "group-hover:text-white duration-500 transition-color text-xs text-left w-full",
+                    pathname.startsWith(link.href) ? "text-white" : "text-black"
+                  )}
+                >
                   {link.name}
                 </p>
-                <div className="size-[7px] group-hover:bg-white bg-black duration-500 transition-color" />
-                <div className="absolute h-0 w-full group-hover:h-full bg-black transition-all duration-200 left-0 -z-1" />
+                <div
+                  className={clsx(
+                    "size-[7px] group-hover:bg-white bg-black duration-500 transition-color",
+                    pathname.startsWith(link.href) ? "bg-white" : "bg-black"
+                  )}
+                />
+                <div
+                  className={clsx(
+                    "absolute h-0 w-full group-hover:h-full bg-black transition-all duration-200 left-0 -z-1",
+                    pathname.startsWith(link.href) ? "h-full" : "h-0"
+                  )}
+                />
               </Link>
             );
           })}
@@ -108,7 +126,12 @@ const Navbar = () => {
                     {link.name}
                   </p>
                   <div className="size-[7px] group-hover:bg-white bg-black duration-500 transition-color" />
-                  <div className="absolute h-0 w-full group-hover:h-full bg-black transition-all duration-200 left-0 -z-1" />
+                  <div
+                    className={clsx(
+                      "absolute w-full group-hover:h-full bg-black transition-all duration-200 left-0 -z-1",
+                      pathname.startsWith(link.href) ? "h-full" : "h-0"
+                    )}
+                  />
                 </div>
                 <div className="border-b border-b-black" />
               </Link>

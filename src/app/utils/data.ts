@@ -173,3 +173,35 @@ export const FUNDED_TYPE = [
       "We believe in win-win ventures. Our joint venture partners share the vision, and we share the success.",
   },
 ];
+
+
+export const PROJECTS = [
+  {
+    id: "0.01",
+    title: "Bexley Road, Northumberland Heath",
+  },
+  {
+    id: "0.02",
+    title: "Rear Plot Transformation: Mixed-Use & Residential Build",
+  },
+  {
+    id: "0.03",
+    title: "Residential New-Build on Former Garage Plot",
+  },
+  {
+    id: "0.04",
+    title: "Side Garden Residential Development",
+  },
+  {
+    id: "0.05",
+    title: "Commercial-to-Residential Redevelopment",
+  },
+  {
+    id: "0.06",
+    title: "Semi-Detached New Build",
+  },
+  {
+    id: "0.07",
+    title: "The Site, Located in Kent",
+  },
+];
