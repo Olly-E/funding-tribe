@@ -1,14 +1,14 @@
 "use client";
+import { usePathname } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
 import clsx from "clsx";
 
 import { useComponentVisible } from "../hooks/useComponentVisible";
 import HamburgerMenu from "../components/HamburgerMenu";
+import CustomCursor from "../components/CustomCursor";
 
 import logo from "../../../public/logo.svg";
-import CustomCursor from "../components/CustomCursor";
-import { usePathname } from "next/navigation";
 
 const Navbar = () => {
   const NAV_LINKS = [
@@ -122,10 +122,20 @@ const Navbar = () => {
                 key={link.id}
               >
                 <div className="flex items-center pl px-6 h-full">
-                  <p className="group-hover:text-white duration-500 transition-color text-sm text-left w-full">
+                  <p
+                    className={clsx(
+                      "group-hover:text-white duration-500 transition-color text-sm text-left w-full",
+                      pathname.startsWith(link.href) ? "text-white" : "text-black"
+                    )}
+                  >
                     {link.name}
                   </p>
-                  <div className="size-[7px] group-hover:bg-white bg-black duration-500 transition-color" />
+                  <div
+                    className={clsx(
+                      "size-[7px] group-hover:bg-white duration-500 transition-color",
+                      pathname.startsWith(link.href) ? "bg-white" : "bg-black"
+                    )}
+                  />
                   <div
                     className={clsx(
                       "absolute w-full group-hover:h-full bg-black transition-all duration-200 left-0 -z-1",
@@ -138,17 +148,20 @@ const Navbar = () => {
             );
           })}
         </div>
-        <div>
+        <div className="">
           <div className="border-b border-b-black" />
-          <p className="text-xs uppercase py-4"> info@fundingtribe.co.uk</p>
+          <p className="text-xs uppercase py-4 pl-6">
+            {" "}
+            info@fundingtribe.co.uk
+          </p>
           <div className="border-b border-b-black" />
-          <p className="text-xs uppercase py-4">
+          <p className="text-xs uppercase py-4 pl-6">
             Level 33, 25 Canada Square, Canary Wharf, London, E14 5LB 
           </p>
           <div className="border-b border-b-black" />
-          <p className="text-xs uppercase py-4">+44(0) 20 39047188 </p>
+          <p className="text-xs uppercase py-4 pl-6">+44(0) 20 39047188 </p>
           <div className="border-b border-b-black" />
-          <p className="text-xs uppercase py-4">© 2025 FUNDING TRIBE</p>
+          <p className="text-xs uppercase py-4 pl-6">© 2025 FUNDING TRIBE</p>
         </div>
       </div>
     </div>

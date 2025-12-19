@@ -10,14 +10,16 @@ const page = () => {
   return (
     <div>
       <section className="flex flex-col sm:flex-row gap-10">
-        <div className="pt-[120px] lg:pt-[60px] pl-6 sm:pl-[50px] text-center sm:text-start pr-6 sm:pr-0">
-          <h1 className="lg:w-[477px] max-w-[331px] sm:max-w-[477px] mx-auto sm:mx-0">
-            OUR FUNDED PROJECTS
-          </h1>
-          <p className="text-[24px] lg:text-[32px] mt-6 leading-[124%] lg:w-[621px]">
-            Each project we fund tells a story of collaboration and shared
-            success.
-          </p>
+        <div className="pt-[120px] lg:pt-[60px] pl-6 sm:pl-[50px] text-center sm:text-start pr-6 sm:pr-0 top-0 relative">
+          <div className="sticky top-[120px] lg:top-12 pb-10">
+            <h1 className="lg:w-[477px] max-w-[331px] sm:max-w-[477px] mx-auto sm:mx-0">
+              OUR FUNDED PROJECTS
+            </h1>
+            <p className="text-[24px] lg:text-[32px] mt-6 leading-[124%] lg:w-[621px]">
+              Each project we fund tells a story of collaboration and shared
+              success.
+            </p>
+          </div>
         </div>
         <div className="border-t-black border-t block sm:hidden" />
         <div className="flex w-full">
