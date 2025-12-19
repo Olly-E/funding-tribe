@@ -174,7 +174,6 @@ export const FUNDED_TYPE = [
   },
 ];
 
-
 export const PROJECTS = [
   {
     id: "0.01",
@@ -203,5 +202,72 @@ export const PROJECTS = [
   {
     id: "0.07",
     title: "The Site, Located in Kent",
+  },
+];
+
+export const NEWS_DATA = [
+  {
+    title: "Bexley Road, Northumberland Heath",
+    id: '1',
+    date: "27.10.2025",
+    category: "FUNDING",
+    src: "https://picsum.photos/800/600?random=1",
+    alt: "Bexley Road project",
+  },
+  {
+    title: "Emily Wombwell on artwashing in",
+    date: "27.10.2025",
+    id: '2',
+    category: "FINANCE",
+    src: "https://picsum.photos/800/600?random=2",
+    alt: "Emily Wombwell Finance",
+  },
+  {
+    title: "The Readers Digest Building",
+    date: "27.10.2025",
+    id: '3',
+    category: "PROJECT",
+    src: "https://picsum.photos/800/600?random=3",
+    alt: "Readers Digest Project",
+  },
+  {
+    title: "The Readers Digest Building",
+    date: "27.10.2025",
+    id: '4',
+    category: "CONSTRUCTION",
+    src: "https://picsum.photos/800/600?random=4",
+    alt: "Readers Digest Construction",
+  },
+  {
+    title: "Kingsford Green DA Lodgement",
+    date: "27.10.2025",
+    id: '5',
+    category: "FUNDING",
+    src: "https://picsum.photos/800/600?random=5",
+    alt: "Kingsford Green",
+  },
+  {
+    title: "Emily Wombwell on artwashing in",
+    date: "27.10.2025",
+    id: '6',
+    category: "WORK",
+    src: "https://picsum.photos/800/600?random=6",
+    alt: "Emily Wombwell Work",
+  },
+  {
+    title: "Emily Wombwell on artwashing",
+    date: "27.10.2025",
+    id: '7',
+    category: "WORK",
+    src: "https://picsum.photos/800/600?random=7",
+    alt: "Artwashing discussion",
+  },
+  {
+    title: "Emily Wombwell on artwashing in",
+    date: "27.10.2025",
+    id: '8',
+    category: "WORK",
+    src: "https://picsum.photos/800/600?random=8",
+    alt: "Artwashing work 2",
   },
 ];

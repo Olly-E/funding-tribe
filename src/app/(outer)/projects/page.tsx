@@ -1,10 +1,10 @@
 import Image from "next/image";
+import Link from "next/link";
 
 import LetConnect from "@/app/components/LetConnect";
 import { PROJECTS } from "@/app/utils/data";
 
 import projectImg from "../../../../public/projectImg.webp";
-import Link from "next/link";
 
 const page = () => {
   return (

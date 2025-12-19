@@ -48,7 +48,7 @@ const ProjectDetailsPage = () => {
               income.
             </p>
             <Link
-              href="#sticky"
+              href="/projects"
               className="mt-20 inline-block text-[24px] group relative underline-offset-2"
             >
               <p className="whitespace-nowrap">Back to all</p>
