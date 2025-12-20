@@ -1,8 +1,9 @@
 import Link from "next/link";
 import React from "react";
 import clsx from "clsx";
-import { Loader } from "./Loader";
+
 import AnimatedArrow from "./AnimatedArrow";
+import { Loader } from "./Loader";
 
 interface ButtonProps {
   variant?:
@@ -94,7 +95,7 @@ export const Button: React.FC<ButtonProps> = ({
       className={clsx(
         "rounded-br-[15px] max-h-[42px] text-black hover:text-white hover:bg-black duration-500  justify-center whitespace-nowrap w-fit focus:outline-blue-state disabled:cursor-not-allowed gap-2 disabled:opacity-70 cursor-pointer flex items-center transition-colors ",
         variant === "primary" && "bg-white ",
-        variant === "secondary" && "bg-white text-black",
+        variant === "secondary" && "bg-black text-white",
         variant === "outline" && "border",
         "bg-none border border-black justify-center",
         (variant === "close" || variant === "back") &&

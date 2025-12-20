@@ -1,5 +1,5 @@
-import { Inter } from "next/font/google";
 import "react-phone-number-input/style.css";
+import { Inter } from "next/font/google";
 import type { Metadata } from "next";
 import "./react-date-picker.css";
 import "./globals.css";

@@ -46,20 +46,24 @@ const Navbar = () => {
   const {
     ref,
     isComponentVisible,
+    setIsComponentVisible,
     dropDownButtonRef,
     handleClickOnDropDownButton,
   } = useComponentVisible();
   const pathname = usePathname();
+  const handleClick = () => {
+    console.log("click");
+  };
 
   return (
     <div className="">
       <CustomCursor isModalOpen={isComponentVisible} />
-      <div className="h-[50px] fixed bg-white min-h-[30px] lg:h-auto xl:h-[30px] flex w-full pr-6 sm:pr-[50px] lg:pr-0 justify-between lg:justify-normal lg:relative z-2">
+      <div className="h-[50px] fixed bg-white min-h-[30px] lg:h-auto xl:h-[30px] flex w-full pr-6 sm:pr-[50px] lg:pr-0 justify-between lg:justify-normal lg:relative z-40">
         <Link
           href="/"
           className="pl-6 sm:px-[50px] self-center flex items-center w-fit h-full"
         >
-          <Image src={logo} alt="trailing-arrow" className="min-w-[128.45px]" />
+          <Image src={logo} alt="trailing-arrow" className="min-w-[158.45px]" />
         </Link>
         <div className="w-full grid-cols-6 hidden lg:grid">
           {NAV_LINKS.map((link) => {
@@ -106,7 +110,7 @@ const Navbar = () => {
       <div
         ref={ref}
         className={clsx(
-          "fixed flex modal flex-col justify-between h-screen top-0 w-[300px] pt-[50px] overflow-hidden lg:hidden bg-white border-r border-r-black left-0 transition-[width,padding] duration-500 ease-in-out z-1"
+          "fixed flex modal flex-col justify-between h-screen top-0 w-[300px] pt-[50px] overflow-hidden lg:hidden bg-white border-r border-r-black left-0 transition-[width,padding] duration-500 ease-in-out z-10"
         )}
         style={{
           clipPath: isComponentVisible ? "inset(0 0 0 0)" : "inset(0 100% 0 0)",
@@ -117,6 +121,7 @@ const Navbar = () => {
           {NAV_LINKS.map((link) => {
             return (
               <Link
+                onClick={() => setIsComponentVisible(false)}
                 href={link.href}
                 className="group relative w-full h-[69px] inline-block"
                 key={link.id}
@@ -125,7 +130,9 @@ const Navbar = () => {
                   <p
                     className={clsx(
                       "group-hover:text-white duration-500 transition-color text-sm text-left w-full",
-                      pathname.startsWith(link.href) ? "text-white" : "text-black"
+                      pathname.startsWith(link.href)
+                        ? "text-white"
+                        : "text-black"
                     )}
                   >
                     {link.name}
