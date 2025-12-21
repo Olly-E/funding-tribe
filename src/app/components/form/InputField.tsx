@@ -4,8 +4,8 @@ import { Eye, EyeSlash } from 'iconsax-react'
 import React from 'react'
 import clsx from 'clsx'
 
-import { Label } from '../Elements/Label'
 import { ErrorMessage } from '../ErrorMessage'
+import { Label } from '../Elements/Label'
 
 interface InputFieldProps {
   type?: 'text' | 'number' | 'email' | 'password'
@@ -84,7 +84,7 @@ export const InputField: React.FC<InputFieldProps> = ({
       <div className="relative">
         <input
           className={clsx(
-            'h-10 w-full border-[0.5px] border-gray-300 font-WorkSans rounded-md bg-transparent px-4 outline-none placeholder:text-sm placeholder:text-gray-300 placeholder:font-light focus-within:border-gray-550 disabled:bg-gray-100',
+            'h-10 w-full border border-black/30 focus-within:border-black font-WorkSans rounded-md bg-transparent px-4 outline-none placeholder:text-sm placeholder:text-gray-300 placeholder:font-light focus-within:border-gray-550 disabled:bg-gray-100',
             hasError && 'border-red-500',
             className
           )}

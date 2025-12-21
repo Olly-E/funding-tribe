@@ -95,7 +95,7 @@ export const Button: React.FC<ButtonProps> = ({
       className={clsx(
         "rounded-br-[15px] max-h-[42px] text-black hover:text-white hover:bg-black duration-500  justify-center whitespace-nowrap w-fit focus:outline-blue-state disabled:cursor-not-allowed gap-2 disabled:opacity-70 cursor-pointer flex items-center transition-colors ",
         variant === "primary" && "bg-white ",
-        variant === "secondary" && "bg-black text-white",
+        variant === "secondary" && "bg-black text-white rounded-md",
         variant === "outline" && "border",
         "bg-none border border-black justify-center",
         (variant === "close" || variant === "back") &&

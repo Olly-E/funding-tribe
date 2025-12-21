@@ -1,4 +1,5 @@
 import dayjs from "dayjs";
+import { AxiosErrorResponse } from "../types";
 
 export const formatAmount = (number: number): string => {
   return new Intl.NumberFormat("en-NG", {
@@ -14,9 +15,21 @@ export const getFormattedDate = (date: Date | string) => {
 };
 
 export const convertTo12HourWithout = (time24: string) => {
-  const [hours, minutes] = time24?.split(':').map(Number)
-  const period = hours >= 12 ? 'PM' : 'AM'
-  const hours12 = hours % 12 || 12 // Convert 0 -> 12 for midnight
-  return `${hours12?.toString()?.padStart(2, '0')}:${minutes?.toString().padStart(2, '0')} ${period}`
-}
+  const [hours, minutes] = time24?.split(":").map(Number);
+  const period = hours >= 12 ? "PM" : "AM";
+  const hours12 = hours % 12 || 12; // Convert 0 -> 12 for midnight
+  return `${hours12?.toString()?.padStart(2, "0")}:${minutes?.toString().padStart(2, "0")} ${period}`;
+};
 
+export const transformError = (error: AxiosErrorResponse): string => {
+  const errorDetail = error.response?.data?.message;
+  if (!errorDetail) return "An unknown error occurred";
+  if (Array.isArray(errorDetail)) {
+    const firstError = errorDetail[0];
+    if (firstError && typeof firstError === "object" && "msg" in firstError) {
+      return (firstError as { msg: string }).msg;
+    }
+    return JSON.stringify(firstError);
+  }
+  return errorDetail;
+};

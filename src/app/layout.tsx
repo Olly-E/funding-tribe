@@ -1,3 +1,4 @@
+import ReactQueryProvider from "./lib/react-query";
 import "react-phone-number-input/style.css";
 import { Inter } from "next/font/google";
 import type { Metadata } from "next";
@@ -23,7 +24,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${inter.variable} antialiased`}>
-        <div className="">{children}</div>
+        <ReactQueryProvider>{children} </ReactQueryProvider>
         <div id="modal-root"></div>
       </body>
     </html>
