@@ -15,7 +15,7 @@ const page = () => {
           <div className="size-[15px] min-w-[15px] bg-black" />
           <p className="text-left w-full whitespace-nowrap">FUNDED PROJECTS</p>
         </div>
-        <div className="w-full flex items-center gap-4">
+        <div className="w-full md:w-fit flex items-center gap-4">
           <div className="xl:w-[395px] w-full md:w-full h-[38px] border border-black-2 rounded-[5px] flex items-center px-3">
             <Search size={16} color="#000000" className="min-w-4" />
             <input

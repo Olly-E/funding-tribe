@@ -17,9 +17,8 @@ const NewsPae = () => {
             NEWS AND INSIGHTS
           </p>
         </div>
-        <div className="w-full flex items-center gap-4">
+        <div className="w-full md:w-fit flex items-center gap-4">
           <div className="xl:w-[395px] w-full md:w-full h-[38px] border border-black-2 rounded-[5px] flex items-center px-3">
-            {" "}
             <Search size={16} color="#000000" className="min-w-4" />
             <input
               type="text"
