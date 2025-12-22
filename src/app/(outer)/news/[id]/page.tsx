@@ -65,8 +65,10 @@ const NewsDetails = () => {
               href="#sticky"
               className="mt-20 inline-block text-[24px] group relative underline-offset-2"
             >
-              <p className="whitespace-nowrap">Back to all</p>
-              <div className="border-t-black w-0 border-t-2 mt-[90px] group-hover:w-full duration-500 transition-all bottom-0 absolute" />
+              <p className="whitespace-nowrap underline md:no-underline">
+                Back to all
+              </p>
+              <div className="border-t-black hidden md:block w-0 border-t-2 mt-[90px] group-hover:w-full duration-500 transition-all bottom-0 absolute" />
             </Link>
           </div>
         </div>
