@@ -5,13 +5,22 @@ interface IHamburgerMenu {
   handleClick: () => void;
   isOpen: boolean;
   buttonRef: React.RefObject<HTMLButtonElement | null>;
+  className?: string;
 }
-const HamburgerMenu = ({ handleClick, isOpen, buttonRef }: IHamburgerMenu) => {
+const HamburgerMenu = ({
+  handleClick,
+  isOpen,
+  buttonRef,
+  className,
+}: IHamburgerMenu) => {
   return (
     <button
       ref={buttonRef}
       onClick={handleClick}
-      className="group relative h-12 w-12 rounded-lg transition-all focus:outline-none"
+      className={clsx(
+        "group relative h-12 w-12 rounded-lg transition-all focus:outline-none",
+        className
+      )}
       aria-expanded={isOpen}
       aria-label={isOpen ? "Close menu" : "Open menu"}
     >

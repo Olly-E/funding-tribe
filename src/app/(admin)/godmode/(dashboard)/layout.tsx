@@ -17,7 +17,7 @@ export default function AdminLayout({
     <div className="flex w-full h-screen overflow-hidden relative">
       <Header />
       <Sidebar />
-      <div className="h-screen overflow-y-auto flex-1 w-full pt-[88px]">
+      <div className="h-screen overflow-y-auto flex-1 w-full pt-[58px]">
         {children}
       </div>
     </div>

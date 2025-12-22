@@ -1,24 +1,25 @@
-import { Edit, Pencil, Search, Trash, Trash2 } from "lucide-react";
+import { Pencil, Search, Trash2 } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 
 import { Button } from "@/app/components/Button";
 import { NEWS_DATA } from "@/app/utils/data";
 
 import newsImg from "../../../../../../public/newsImg.png";
-import Link from "next/link";
 
 const NewsPae = () => {
   return (
-    <div className="pb-10">
-      <div className="px-[62px] mb-[25px] flex items-center justify-between">
+    <div className="pb-10 mt-[31px]">
+      <div className="px-6 md:px-[62px] mb-[25px] flex flex-col md:flex-row gap-10 items-center justify-between">
         <div className="flex items-center gap-2.5">
           <div className="size-[15px] min-w-[15px] bg-black" />
           <p className="text-left w-full whitespace-nowrap">
             NEWS AND INSIGHTS
           </p>
         </div>
-        <div className="flex items-center gap-4">
-          <div className="w-[395px] h-[38px] border border-black-2 rounded-[5px] flex items-center px-3">
+        <div className="w-full flex items-center gap-4">
+          <div className="xl:w-[395px] w-full md:w-full h-[38px] border border-black-2 rounded-[5px] flex items-center px-3">
+            {" "}
             <Search size={16} color="#000000" className="min-w-4" />
             <input
               type="text"
@@ -32,7 +33,7 @@ const NewsPae = () => {
             as="link"
             href="/godmode/news/new"
           >
-            ADD NEWS +
+            <span className="truncate">ADD NEWS</span> +
           </Button>
         </div>
       </div>

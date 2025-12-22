@@ -18,7 +18,7 @@ const ProjectImgView = () => {
   console.log({active})
   return (
     <div className="w-full">
-      <div className="pt-[61px] pl-6 sm:pl-[50px] pr-6 sm:pr-[50px] w-full">
+      <div className="pt-[48px] sm:pt-[61px] pl-6 sm:pl-[50px] pr-6 sm:pr-[50px] w-full">
         <div className="h-[437px] sm:h-[807px] w-full relative rounded-bl-[120px] overflow-hidden">
           <Image
             src={PROJECT_IMG[active]}

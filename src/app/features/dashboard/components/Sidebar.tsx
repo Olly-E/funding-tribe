@@ -1,13 +1,12 @@
 "use client";
 
-import { Contact, Home, Newspaper, Tickets } from "lucide-react";
-import { usePathname, useRouter } from "next/navigation";
-import Image from "next/image";
+import { Home, Newspaper } from "lucide-react";
+import { usePathname } from "next/navigation";
 import Link from "next/link";
-import React from "react";
 import clsx from "clsx";
 
-import logo from "../../../../../public/logo.svg";
+import { useComponentVisible } from "@/app/hooks/useComponentVisible";
+import HamburgerMenu from "@/app/components/HamburgerMenu";
 
 const Sidebar = () => {
   const pathname = usePathname();
@@ -29,48 +28,75 @@ const Sidebar = () => {
     },
   ];
 
+  const DETAILS = ["/godmode/projects/", "/godmode/news/"];
+  const isDetailLink = DETAILS.some((path) => pathname.startsWith(path));
+
+  const {
+    ref,
+    isComponentVisible,
+    setIsComponentVisible,
+    dropDownButtonRef,
+    handleClickOnDropDownButton,
+  } = useComponentVisible();
+
   return (
-    <div
-      className={clsx(
-        "h-screen hidden w-[264px] lg:flex bg-[#FFFFFF] relative flex-col justify-between border-r transition-[width,padding] duration-500 ease-in-out z-2 px-[11px] border-r-black"
-      )}
-    >
+    <div className="">
+      <HamburgerMenu
+        isOpen={isComponentVisible}
+        handleClick={handleClickOnDropDownButton}
+        buttonRef={dropDownButtonRef}
+        className="z-10 absolute!"
+      />
+
       <div
+        ref={ref}
         className={clsx(
-          "w-full h-full flex flex-col justify-between transition-opacity duration-300"
+          isDetailLink
+            ? "w-0 p-0 h-0"
+            : isComponentVisible
+              ? "w-[237px] px-[11px] fixed lg:relative"
+              : "w-0 lg:w-[237px] px-0 lg:px-[11px] fixed lg:relative",
+          "h-screen overflow-hidden lg:flex bg-[#FFFFFF] flex-col justify-between border-r transition-[width,padding] duration-500 ease-in-out z-2 border-r-black"
         )}
       >
-        <div className="w-full relative z-4">
-          <div className="mt-[100px]">
-            {DASHBOARD_LINK.map((link) => {
-              const isActive = pathname.startsWith(link.link);
-              return (
-                <Link
-                  href={link.link}
-                  className={clsx(
-                    "flex items-center gap-5 h-12 mt-2 px-3 rounded-[10px] hover:bg-black group transition-colors",
-                    isActive && "bg-black"
-                  )}
-                  key={link.id}
-                >
-                  <link.icon
-                    size={24}
+        <div
+          className={clsx(
+            "w-full lg:h-full flex flex-col justify-between transition-opacity duration-300"
+          )}
+        >
+          <div className="w-full relative z-4">
+            <div className="mt-[100px]">
+              {DASHBOARD_LINK.map((link) => {
+                const isActive = pathname.startsWith(link.link);
+                return (
+                  <Link
+                    onClick={() => setIsComponentVisible(false)}
+                    href={link.link}
                     className={clsx(
-                      "text-black group-hover:text-[#FFFFFF]",
-                      isActive && "text-white"
+                      "flex items-center gap-5 h-12 mt-2 px-3 rounded-[10px] hover:bg-black group transition-colors",
+                      isActive && "bg-black"
                     )}
-                  />
-                  <p
-                    className={clsx(
-                      "text-black group-hover:text-[#FFFFFF]",
-                      isActive && "text-white"
-                    )}
+                    key={link.id}
                   >
-                    {link.name}
-                  </p>
-                </Link>
-              );
-            })}
+                    <link.icon
+                      size={24}
+                      className={clsx(
+                        "text-black group-hover:text-[#FFFFFF]",
+                        isActive && "text-white"
+                      )}
+                    />
+                    <p
+                      className={clsx(
+                        "text-black group-hover:text-[#FFFFFF]",
+                        isActive && "text-white"
+                      )}
+                    >
+                      {link.name}
+                    </p>
+                  </Link>
+                );
+              })}
+            </div>
           </div>
         </div>
       </div>

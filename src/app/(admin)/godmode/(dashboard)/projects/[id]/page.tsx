@@ -1,31 +1,41 @@
-import ProjectImgView from "@/app/components/ProjectImgView";
+import { ArrowLeft } from "lucide-react";
 import Link from "next/link";
-import React from "react";
+
+import ProjectImgView from "@/app/components/ProjectImgView";
 
 const page = () => {
   return (
     <div>
-      <section className="flex justify-between w-full flex-col sm:flex-row">
+      <section className="flex flex-col-reverse justify-between w-full md:flex-row">
         <div className="w-full lg:min-w-[641px]">
-          <div className="pt-[120px] lg:pt-[60px] pb-15 pl-6 sm:pl-[50px] text-center sm:text-start pr-6 sm:pr-0">
-            <h1 className="lg:max-w-[567px] mx-auto sm:mx-0">
+          <div className="hidden md:block pt-[120px] lg:pt-[60px] pb-15 pl-6 sm:pl-[50px] text-center sm:text-start pr-6 sm:pr-0">
+            <Link
+              href="/godmode/projects"
+              className="hover:bg-black size-9 mb-4 centered rounded-full group group-hover:bg-black transition-colors"
+            >
+              <ArrowLeft
+                size={24}
+                className="text-black group-hover:text-white"
+              />
+            </Link>
+            <h1 className="lg:max-w-[567px] mx-auto sm:mx-0 ">
               Bexley Road, Northumberland Heath
             </h1>
           </div>
           <div className="border-t-black border-t block" />
-          <div className="pt-[60px] px-[50px] pb-[200px]">
-            <h2 className="font-bold text-[20px] leading-[124%]">
+          <div className="py-8 md:pt-[60px] px-6 sm:px-[50px] md:pb-[200px]">
+            <h2 className="font-bold text-base sm:text-[20px] leading-[124%]">
               Project Summary:
             </h2>
-            <p className="mt-10 text-[20px] leading-[124%]">
+            <p className="mt-5 md:mt-10 text-base sm:text-[20px] leading-[124%]">
               Funding Tribe partnered with the developer to deliver a
               three-storey redevelopment of two detached houses into nine modern
               two-bed apartments, each with parking and private amenity space.
             </p>
-            <h2 className="font-bold text-[20px] mt-10 leading-[124%]">
+            <h2 className="font-bold text-base sm:text-[20px] mt-5 md:mt-10 leading-[124%]">
               Our Role:
             </h2>
-            <ul className="list-disc list-inside text-[20px] mt-8 leading-[124%]">
+            <ul className="list-disc list-outside pl-4 text-base sm:text-[20px] mt-8 leading-[124%]">
               <li>Raised and structured the full development funding.</li>
               <li>
                 Supported the developer through acquisition, demolition, and
@@ -33,10 +43,10 @@ const page = () => {
               </li>
               <li>Managed investor confidence throughout the build period.</li>
             </ul>
-            <h2 className="font-bold text-[20px] mt-10 leading-[124%]">
+            <h2 className="font-bold text-base sm:text-[20px] mt-5 md:mt-10 leading-[124%]">
               Outcome:
             </h2>
-            <p className="mt-10 text-[20px] leading-[124%]">
+            <p className="mt-5 md:mt-10 text-base sm:text-[20px] leading-[124%]">
               The development was successfully completed. The developer
               refinanced the building, retained all nine units as long-term
               rentals, and all Funding Tribe investors were fully repaid on
@@ -48,16 +58,30 @@ const page = () => {
             </p>
             <Link
               href="/projects"
-              className="mt-20 inline-block text-[24px] group relative underline-offset-2"
+              className="mt-10 md:mt-20 inline-block sm:text-[24px] group relative underline-offset-2"
             >
               <p className="whitespace-nowrap">Back to all</p>
               <div className="border-t-black w-0 border-t-2 mt-[90px] group-hover:w-full duration-500 transition-all bottom-0 absolute" />
             </Link>
           </div>
         </div>
-        <div className="flex w-full justify-between ">
-          <div className="border-l-black border-l h-full block" />
+        <div className="flex flex-col-reverse md:flex-row w-full justify-between ">
+          <div className="hidden md:block md:border-l-black md:border-l h-full" />
           <ProjectImgView />
+          <div className="border-t border-t-black md:border-l-black md:border-l h-full block" />
+
+          <h1 className="pb-12 pt-6 px-6 lg:max-w-[567px] mx-auto sm:mx-0 md:hidden">
+            Bexley Road, Northumberland Heath
+          </h1>
+          <Link
+            href="/godmode/projects"
+            className="hover:bg-black mt-10 ml-6 flex size-9 sm:hidden items-center justify-center rounded-full group group-hover:bg-black transition-colors"
+          >
+            <ArrowLeft
+              size={24}
+              className="text-black group-hover:text-white"
+            />
+          </Link>
         </div>
       </section>
     </div>

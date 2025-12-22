@@ -9,6 +9,7 @@ import { UploadPhotoSection } from "@/app/components/UploadPhotoSection";
 import { TextAreaField } from "@/app/components/form/TextAreaField";
 import { InputField } from "@/app/components/form/InputField";
 import { Button } from "@/app/components/Button";
+import Link from "next/link";
 
 const NewNewsPage = () => {
   const [, setFileUrl] = React.useState<string | string[]>([]);
@@ -26,51 +27,58 @@ const NewNewsPage = () => {
     },
   });
   return (
-    <div className="w-[644px] mx-auto my-[25px] px-[50px] rounded-[20px] border border-black bg-[#FFFFFF] py-[50px]">
-      <ArrowLeft size={24} color="#000000" />
-      <h1 className="text-[24px]! mt-6">Add new news</h1>
-      <p>Add news details below</p>
-      <div className="">
-        <p className="mt-3.5 text-sm font-semibold">Image</p>
-        <UploadPhotoSection onUploadSuccess={(url) => setFileUrl(url)} />
+    <div className="px-6">
+      <div className="sm:w-[644px] mx-auto my-[25px] px-6 sm:px-[50px] rounded-[20px] border border-black bg-[#FFFFFF] py-6 sm:py-[50px]">
+        <Link
+          href="/godmode/news"
+          className="hover:bg-black size-9 mb-4 centered rounded-full group group-hover:bg-black transition-colors"
+        >
+          <ArrowLeft size={24} className="text-black group-hover:text-white" />
+        </Link>
+        <h1 className="text-[24px]! mt-6">Add new news</h1>
+        <p>Add news details below</p>
+        <div className="">
+          <p className="mt-3.5 text-sm font-semibold">Image</p>
+          <UploadPhotoSection onUploadSuccess={(url) => setFileUrl(url)} />
+        </div>
+        <div className="mt-6">
+          <InputField
+            registration={{ ...register("title") }}
+            hasError={errors.title}
+            className="bg-[#434343] text-black"
+            isRequired
+            label="Tile"
+            placeholder=""
+          />
+        </div>
+        <div className="mt-6">
+          <InputField
+            registration={{ ...register("category") }}
+            hasError={errors.category}
+            className="bg-[#434343] text-black"
+            isRequired
+            label="Category"
+            placeholder=""
+          />
+        </div>
+        <div className="mt-6">
+          <TextAreaField
+            id="description"
+            className="bg-none"
+            label="Description"
+            registration={{ ...register("description") }}
+            hasError={errors.description}
+            isRequired
+          />
+        </div>
+        <Button
+          type="submit"
+          variant="secondary"
+          className="rounded-md! mt-6 px-10!"
+        >
+          Done
+        </Button>
       </div>
-      <div className="mt-6">
-        <InputField
-          registration={{ ...register("title") }}
-          hasError={errors.title}
-          className="bg-[#434343] text-black"
-          isRequired
-          label="Tile"
-          placeholder=""
-        />
-      </div>
-      <div className="mt-6">
-        <InputField
-          registration={{ ...register("category") }}
-          hasError={errors.category}
-          className="bg-[#434343] text-black"
-          isRequired
-          label="Category"
-          placeholder=""
-        />
-      </div>
-      <div className="mt-6">
-        <TextAreaField
-          id="description"
-          className="bg-none"
-          label="Description"
-          registration={{ ...register("description") }}
-          hasError={errors.description}
-          isRequired
-        />
-      </div>
-      <Button
-        type="submit"
-        variant="secondary"
-        className="rounded-md! mt-6 px-10!"
-      >
-        Done
-      </Button>
     </div>
   );
 };
