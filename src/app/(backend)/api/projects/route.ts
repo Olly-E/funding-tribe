@@ -1,8 +1,8 @@
 import { NextResponse } from "next/server";
 
 import { createError, handleApiError } from "../../utils/utils";
-import Project from "../models/projectModel";
 import dbConnect from "../../lib/mongodb";
+import Project from "../../models/projectModel";
 
 export async function POST(request: Request) {
   try {

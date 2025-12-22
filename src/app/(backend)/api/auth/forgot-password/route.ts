@@ -3,7 +3,7 @@ import { NextResponse } from "next/server";
 import bcrypt from "bcryptjs";
 
 import { createError, handleApiError } from "@/app/(backend)/utils/utils";
-import User from "@/app/(backend)/api/models/userModel";
+import User from "@/app/(backend)/models/userModel";
 
 export async function POST(request: Request) {
   try {
