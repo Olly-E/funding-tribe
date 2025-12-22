@@ -3,6 +3,11 @@ export interface Option {
   id: string;
   name: string;
 }
+
+export enum AccessType {
+  ADMIN = "ADMIN",
+  VISITOR = "VISITOR",
+}
 export interface UploadedFile {
   id: number;
   file: File;
@@ -20,7 +25,6 @@ export interface AxiosErrorResponse {
     data?: ErrorResponseData;
   };
 }
-
 
 export interface UploadedFile {
   id: number;

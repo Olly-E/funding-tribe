@@ -10,6 +10,7 @@ import CustomCursor from "../components/CustomCursor";
 
 import logo from "../../../public/logo.svg";
 
+
 const Navbar = () => {
   const NAV_LINKS = [
     {

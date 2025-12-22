@@ -1,5 +1,6 @@
 import ReactQueryProvider from "./lib/react-query";
 import "react-phone-number-input/style.css";
+import { Toaster } from "react-hot-toast";
 import { Inter } from "next/font/google";
 import type { Metadata } from "next";
 import "./react-date-picker.css";
@@ -12,8 +13,8 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Plural Health",
-  description: "Building better healthcare",
+  title: "Funding Tribe",
+  description: "",
 };
 
 export default function RootLayout({
@@ -24,7 +25,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${inter.variable} antialiased`}>
-        <ReactQueryProvider>{children} </ReactQueryProvider>
+        <ReactQueryProvider>
+          {children} <Toaster />
+        </ReactQueryProvider>
         <div id="modal-root"></div>
       </body>
     </html>

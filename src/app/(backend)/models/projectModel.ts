@@ -1,55 +1,22 @@
-import { Schema, model } from "mongoose";
-import mongoose from "mongoose";
+import mongoose, { Schema, models } from "mongoose";
 
-import { createError } from "../utils/utils";
-import { IProject } from "../types";
-
-const ProjectSchema: Schema<IProject> = new Schema(
+const ProjectSchema = new Schema(
   {
-    title: {
+    name: {
       type: String,
       required: true,
       unique: true,
-      trim: true,
     },
     description: {
       type: String,
       required: true,
     },
-    imgUrls: {
-      type: [String],
-      required: true,
-      default: [],
-    },
+    imgUrls: { type: [String], default: [] },
   },
   {
     timestamps: true,
   }
 );
 
-ProjectSchema.pre<IProject>("validate", function (next) {
-  if (!this.title) {
-    const error = createError({
-      type: "MissingFieldError",
-      message: "The project title cannot be empty.",
-      statusCode: 400,
-    });
-    return next(error);
-  }
-
-  if (!this.description) {
-    const error = createError({
-      type: "MissingFieldError",
-      message: "The project description is a required field.",
-      statusCode: 400,
-    });
-    return next(error);
-  }
-
-  next();
-});
-
-const Project =
-  mongoose.models.Project || model<IProject>("Project", ProjectSchema);
-
+const Project = models.Project || mongoose.model("Project", ProjectSchema);
 export default Project;

@@ -30,24 +30,10 @@ export const userIDStorage = {
   },
 };
 
-export const roleStorage = {
-  getRole: () => {
-    return Cookies.get(`${STORAGE_PREFIX}ROLE`) as string;
-  },
-
-  setRole: (role: string) => {
-    Cookies.set(`${STORAGE_PREFIX}ROLE`, role);
-  },
-
-  clearRole: () => {
-    Cookies.remove(`${STORAGE_PREFIX}ROLE`);
-  },
-};
 
 export const storage = {
   clear: () => {
     tokenStorage.clearToken();
     userIDStorage.clearUserID();
-    roleStorage.clearRole();
   },
 };

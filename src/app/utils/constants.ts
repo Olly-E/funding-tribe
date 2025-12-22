@@ -5,6 +5,7 @@ export const METHOD = {
   GET: "GET",
   PUT: "PUT",
   DELETE: "DELETE",
+  PATCH: "PATCH",
 };
 
 export const OPTION_VALIDATION = object({
@@ -18,6 +19,6 @@ export const OPTION_VALIDATION_OPTIONAL = object({
 }).optional();
 
 export const EMPTY_OPTION = {
-  name: '',
-  id: ''
-}
+  name: "",
+  id: "",
+};

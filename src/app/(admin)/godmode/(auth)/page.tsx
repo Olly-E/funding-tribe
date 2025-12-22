@@ -1,16 +1,25 @@
 "use client";
 
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
-import Link from "next/link";
+import toast from "react-hot-toast";
+import React from "react";
 
 import { loginSchema } from "@/app/features/auth/utils/validationSchema";
 import { InputField } from "@/app/components/form/InputField";
+import { useLogin } from "@/app/features/auth/apis/useLogin";
+import { LoginFormProps } from "@/app/features/auth/types";
+import { tokenStorage } from "@/app/utils/storage";
 import { useToggle } from "@/app/hooks/useToggle";
 import { Button } from "@/app/components/Button";
 
 const Page = () => {
   const { show, handleToggle } = useToggle();
+  const { mutate, isPending } = useLogin();
+  const [checked, setChecked] = React.useState(false);
+
+  const router = useRouter();
   const {
     register,
     handleSubmit,
@@ -23,11 +32,25 @@ const Page = () => {
       password: "",
     },
   });
-  const onSubmit = (values: unknown) => {
-    console.log({ values });
+  const onSubmit = (values: LoginFormProps) => {
+    mutate(values, {
+      onSuccess: () => {
+        router.push("");
+        toast.success("Login Successful");
+      },
+    });
   };
+  React.useEffect(() => {
+    const token = tokenStorage.getToken();
+    if (token) {
+      router.replace("/godmode/projects");
+    } else {
+      setChecked(true);
+    }
+  }, []);
 
-  console.log({ errors });
+  if (!checked) return null;
+  
   return (
     <div className="centered h-full">
       <form
@@ -51,6 +74,7 @@ const Page = () => {
             className="bg-[#434343] text-black"
             isRequired
             label="Email"
+            type="email"
             placeholder=""
           />
         </div>
@@ -58,7 +82,7 @@ const Page = () => {
           <InputField
             registration={{ ...register("password") }}
             hasError={errors.password}
-            className="bg-[#434343] text-white"
+            className="bg-[#434343] text-black"
             isRequired
             label="Password"
             type={show ? "text" : "password"}
@@ -67,14 +91,20 @@ const Page = () => {
             withIcon
           />
         </div>
-        <Link
+        {/* <Link
           className="text-gray-4 mt-4 text-xs flex justify-end"
           href="/forgot-password"
         >
           Forgot password
-        </Link>
-        <Button variant="secondary" className="rounded-none! w-full mt-8">
-          Continue
+        </Link> */}
+        <Button
+          isLoading={isPending}
+          disabled={isPending}
+          type="submit"
+          variant="secondary"
+          className="rounded-none! w-full mt-8"
+        >
+          {isPending ? "Logging in..." : "Continue"}
         </Button>
       </form>
     </div>
