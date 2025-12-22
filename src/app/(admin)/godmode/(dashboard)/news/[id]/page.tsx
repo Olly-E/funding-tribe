@@ -1,9 +1,8 @@
+import { ArrowLeft } from "lucide-react";
 import Image from "next/image";
-import React from "react";
+import Link from "next/link";
 
 import newsImg from "../../../../../../../public/newsImg.png";
-import Link from "next/link";
-import { ArrowLeft } from "lucide-react";
 
 const page = () => {
   return (
