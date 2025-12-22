@@ -8,11 +8,11 @@ import { ArrowLeft } from "lucide-react";
 const page = () => {
   return (
     <div className="">
-      <section className="grid grid-cols-1 sm:grid-cols-2">
+      <section className="grid grid-cols-1 sm:grid-cols-2 pt-10">
         <div className=" md:pr-[50px] xl:pr-[99px] pl-6 sm:pb-[60px] sm:pt-16 sm:pl-[50px]">
           <Link
             href="/godmode/news"
-            className="hover:bg-black size-9 mt-6 sm:mt-0 sm:mb-4 centered rounded-full group group-hover:bg-black transition-colors"
+            className="hover:bg-black size-9 md:mt-6 sm:mt-0 sm:mb-4 centered rounded-full group group-hover:bg-black transition-colors"
           >
             <ArrowLeft
               size={24}

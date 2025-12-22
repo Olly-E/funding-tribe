@@ -6,7 +6,7 @@ import ProjectImgView from "@/app/components/ProjectImgView";
 const page = () => {
   return (
     <div>
-      <section className="flex flex-col-reverse justify-between w-full md:flex-row">
+      <section className="flex pt-10 md:pt-0 flex-col-reverse justify-between w-full md:flex-row">
         <div className="w-full lg:min-w-[641px]">
           <div className="hidden md:block pt-[120px] lg:pt-[60px] pb-15 pl-6 sm:pl-[50px] text-center sm:text-start pr-6 sm:pr-0">
             <Link
@@ -75,7 +75,7 @@ const page = () => {
           </h1>
           <Link
             href="/godmode/projects"
-            className="hover:bg-black mt-10 ml-6 flex size-9 sm:hidden items-center justify-center rounded-full group group-hover:bg-black transition-colors"
+            className="hover:bg-black ml-6 flex size-9 md:hidden items-center justify-center rounded-full group group-hover:bg-black transition-colors"
           >
             <ArrowLeft
               size={24}

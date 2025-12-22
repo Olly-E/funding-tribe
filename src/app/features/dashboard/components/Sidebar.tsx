@@ -45,7 +45,7 @@ const Sidebar = () => {
         isOpen={isComponentVisible}
         handleClick={handleClickOnDropDownButton}
         buttonRef={dropDownButtonRef}
-        className="z-10 absolute!"
+        className="z-10 fixed!"
       />
 
       <div
