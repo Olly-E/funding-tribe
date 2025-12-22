@@ -1,11 +1,10 @@
-import { Pencil, Search, Trash2 } from "lucide-react";
-import Image from "next/image";
+import { Search } from "lucide-react";
 
 import { Button } from "@/app/components/Button";
 import { PROJECT_DATA } from "@/app/utils/data";
 
 import projectCImg1 from "../../../../../../public/projectCImg1.webp";
-import Link from "next/link";
+import ProjectCard from "@/app/features/projects/components/ProjectCard";
 
 const page = () => {
   return (
@@ -35,33 +34,14 @@ const page = () => {
         </div>
       </div>
       <div className="grid xs:grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 md:gap-10 xl:gap-20 pl-6 sm:pl-[50px] xl:pl-10 pr-6 sm:pr-[50px] xl:justify-items-end">
-        {PROJECT_DATA.map((project, index) => {
+        {PROJECT_DATA.map((project) => {
           return (
-            <Link
-              href={`/godmode/projects/${index}`}
-              key={index}
-              className="group relative"
-            >
-              <Image
-                alt="project-img"
-                className="h-[221px] sm:w-[184px] object-cover rounded-[20px]"
-                src={projectCImg1}
-              />
-              <div className="pl-2.5 flex gap-10 mt-10">
-                <p className="text-sm uppercase font-bold w-full md:w-[184px] h-full">
-                  {project.title}
-                </p>
-                <div className="border-r border-r-black h-[100px]" />
-              </div>
-              <div className="mt-2 items-center gap-2 w-fit rounded-md hidden group-hover:flex absolute top-2 left-2 z-10">
-                <button className="rounded-full bg-white centered size-[34px]">
-                  <Trash2 className="size-4 text-red-state" />
-                </button>
-                <button className="rounded-full bg-white centered size-[34px]">
-                  <Pencil className="size-4 text-black" />
-                </button>
-              </div>
-            </Link>
+            <ProjectCard
+              key={project.slug}
+              title={project.title}
+              image={projectCImg1}
+              slug={project.slug}
+            />
           );
         })}
       </div>
