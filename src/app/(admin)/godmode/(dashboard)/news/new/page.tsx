@@ -39,7 +39,7 @@ const NewNewsPage = () => {
         <p>Add news details below</p>
         <div className="">
           <p className="mt-3.5 text-sm font-semibold">Image</p>
-          <UploadPhotoSection onUploadSuccess={(url) => setFileUrl(url)} />
+          {/* <UploadPhotoSection  /> */}
         </div>
         <div className="mt-6">
           <InputField

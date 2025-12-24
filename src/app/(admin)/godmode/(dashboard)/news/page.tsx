@@ -1,10 +1,10 @@
 import { Search } from "lucide-react";
 
+import NewsCard from "@/app/features/news/components/NewsCard";
+import { Button } from "@/app/components/Button";
 import { NEWS_DATA } from "@/app/utils/data";
 
 import newsImg from "../../../../../../public/newsImg.png";
-import { Button } from "@/app/components/Button";
-import NewsCard from "@/app/features/news/components/NewsCard";
 
 const NewsPae = () => {
   return (

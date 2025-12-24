@@ -14,6 +14,7 @@ export interface UploadedFile {
   status: "uploading" | "success" | "error";
   url?: string;
   preview: string;
+  publicId: string;
 }
 
 export interface ErrorResponseData {
@@ -25,18 +26,12 @@ export interface AxiosErrorResponse {
     data?: ErrorResponseData;
   };
 }
-
-export interface UploadedFile {
-  id: number;
-  file: File;
-  status: "uploading" | "success" | "error";
-  url?: string;
-  preview: string;
+export interface UploadedImage {
+  url: string;
+  publicId: string;
 }
 
-export interface UseMultiFileUploadProps {
-  onUploadSuccess: (urls: string | string[]) => void;
-}
+
 
 export interface UseMultiFileUploadReturn {
   files: UploadedFile[];
@@ -47,6 +42,7 @@ export interface UseMultiFileUploadReturn {
     onDragLeave: (e: DragEvent<HTMLDivElement>) => void;
     onDrop: (e: DragEvent<HTMLDivElement>) => void;
   };
+  uploadPending: boolean;
   getInputProps: () => {
     ref: RefObject<HTMLInputElement>;
     type: "file";
@@ -55,12 +51,15 @@ export interface UseMultiFileUploadReturn {
     className: string;
     disabled: boolean;
   };
+  clearFiles: () => void;
   removeFile: (id: number) => void;
   removeAllFiles: () => void;
+  deletePending: boolean;
+  getSuccessfulUploads: () => UploadedImage[]; // ✅ ADD THIS
 }
 
 export interface UploadEventPhotoSectionProps {
-  onUploadSuccess: (urls: string | string[]) => void;
+  onUploadSuccess: (urls: string[]) => void;
   className?: string;
   label?: string;
 }

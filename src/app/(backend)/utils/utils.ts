@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { NextRequest, NextResponse } from "next/server";
 import { AppError } from "../types";
 import jwt from "jsonwebtoken";
@@ -19,18 +20,50 @@ export function createError({
     isOperational: true,
   };
 }
-
 export function handleApiError(err: unknown) {
+  // Custom AppError
   if ((err as AppError)?.name === "AppError") {
     const error = err as AppError;
-
     return NextResponse.json(
-      {
-        error: error.type,
-        message: error.message,
-      },
+      { error: error.type, message: error.message },
       { status: error.statusCode }
     );
+  }
+
+  // Mongoose / MongoDB errors
+  if (err instanceof Error && "name" in err) {
+    const mongooseError = err as any;
+
+    // Duplicate key error (unique index violation)
+    if (mongooseError.code === 11000) {
+      const key = Object.keys(mongooseError.keyValue)[0];
+      return NextResponse.json(
+        {
+          error: "DuplicateError",
+          message: `Duplicate value for field '${key}'`,
+        },
+        { status: 409 }
+      );
+    }
+
+    // Validation error
+    if (mongooseError.name === "ValidationError") {
+      const messages = Object.values(mongooseError.errors)
+        .map((e: any) => e.message)
+        .join(", ");
+      return NextResponse.json(
+        { error: "ValidationError", message: messages },
+        { status: 400 }
+      );
+    }
+
+    // CastError (invalid ObjectId or type mismatch)
+    if (mongooseError.name === "CastError") {
+      return NextResponse.json(
+        { error: "CastError", message: mongooseError.message },
+        { status: 400 }
+      );
+    }
   }
 
   console.error("UNEXPECTED ERROR:", err);
@@ -40,6 +73,7 @@ export function handleApiError(err: unknown) {
     { status: 500 }
   );
 }
+
 export interface DecodedToken {
   userId: string;
 }

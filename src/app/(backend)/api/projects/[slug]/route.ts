@@ -1,5 +1,4 @@
 import { NextResponse } from "next/server";
-import mongoose from "mongoose";
 
 import { createError, handleApiError } from "@/app/(backend)/utils/utils";
 import Project from "@/app/(backend)/models/projectModel";
@@ -7,14 +6,12 @@ import dbConnect from "@/app/(backend)/lib/mongodb";
 
 export async function PUT(
   request: Request,
-  context: { params: Promise<{ id: string }> }
+  context: { params: Promise<{ slug: string }> }
 ) {
   try {
     await dbConnect();
 
-    const { id } = await context.params;
-    console.log(id);
-
+    const { slug } = await context.params;
     const body = await request.json();
     const { title, description, imgUrls } = body;
 
@@ -26,15 +23,15 @@ export async function PUT(
       });
     }
 
-    const project = await Project.findByIdAndUpdate(
-      id,
+    const project = await Project.findOneAndUpdate(
+      { slug },
       {
         ...(title && { title }),
         ...(description && { description }),
         ...(imgUrls && { imgUrls }),
       },
       { new: true, runValidators: true }
-    ).select("_id title imgUrls createdAt updatedAt");
+    ).select("_id title slug imgUrls createdAt updatedAt");
 
     if (!project) {
       throw createError({
@@ -55,22 +52,14 @@ export async function PUT(
 
 export async function DELETE(
   request: Request,
-  context: { params: Promise<{ id: string }> }
+  context: { params: Promise<{ slug: string }> }
 ) {
   try {
-    const { id } = await context.params;
-
-    if (!mongoose.Types.ObjectId.isValid(id)) {
-      throw createError({
-        type: "InvalidIdError",
-        message: "Invalid project ID",
-        statusCode: 400,
-      });
-    }
+    const { slug } = await context.params;
 
     await dbConnect();
 
-    const project = await Project.findByIdAndDelete(id);
+    const project = await Project.findOneAndDelete({ slug });
 
     if (!project) {
       throw createError({
@@ -83,10 +72,38 @@ export async function DELETE(
     return NextResponse.json(
       {
         message: "Project deleted successfully",
-        data: { _id: id },
+        data: { slug },
       },
       { status: 200 }
     );
+  } catch (err) {
+    return handleApiError(err);
+  }
+}
+
+export async function GET(
+  _request: Request,
+  { params }: { params: Promise<{ slug: string }> }
+) {
+  try {
+    await dbConnect();
+
+    const resolvedParams = await params;
+    const slug = resolvedParams.slug;
+
+    console.log("Slug received:", slug);
+
+    const project = await Project.findOne({ slug });
+
+    if (!project) {
+      throw createError({
+        type: "NotFoundError",
+        message: "Project not found",
+        statusCode: 404,
+      });
+    }
+
+    return NextResponse.json({ data: project }, { status: 200 });
   } catch (err) {
     return handleApiError(err);
   }

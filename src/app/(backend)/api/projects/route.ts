@@ -24,6 +24,7 @@ export async function POST(request: Request) {
         statusCode: 409,
       });
     }
+
     const project = await Project.create({
       title,
       description,
@@ -42,7 +43,7 @@ export async function GET() {
   try {
     await dbConnect();
     const projects = await Project.find()
-      .select("_id title description imgUrls createdAt updatedAt")
+      .select("_id title description imgUrls createdAt slug updatedAt")
       .sort({ createdAt: -1 });
     return NextResponse.json(
       { message: "Projects fetched successfully", data: projects },

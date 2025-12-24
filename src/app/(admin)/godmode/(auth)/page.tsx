@@ -8,7 +8,7 @@ import React from "react";
 
 import { loginSchema } from "@/app/features/auth/utils/validationSchema";
 import { InputField } from "@/app/components/form/InputField";
-import { useLogin } from "@/app/features/auth/apis/useLogin";
+import { useLogin } from "@/app/features/auth/api/useLogin";
 import { LoginFormProps } from "@/app/features/auth/types";
 import { tokenStorage } from "@/app/utils/storage";
 import { useToggle } from "@/app/hooks/useToggle";

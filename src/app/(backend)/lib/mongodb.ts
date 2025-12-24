@@ -10,6 +10,8 @@ if (!cached) {
 }
 
 async function dbConnect() {
+  console.log("CONNECTED TO DB:", mongoose.connection.name);
+
   if (cached.conn) {
     return cached.conn;
   }

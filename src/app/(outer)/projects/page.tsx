@@ -7,6 +7,7 @@ import { PROJECTS } from "@/app/utils/data";
 import projectImg from "../../../../public/projectImg.webp";
 
 const page = () => {
+
   return (
     <div>
       <section className="flex flex-col sm:flex-row gap-10">

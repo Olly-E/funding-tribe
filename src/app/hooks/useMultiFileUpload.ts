@@ -1,83 +1,94 @@
 "use client";
 
 import { useState, useRef, useEffect, DragEvent } from "react";
-import {
-  UseMultiFileUploadProps,
-  UploadedFile,
-  UseMultiFileUploadReturn,
-} from "../types";
-import { useFileUpload } from "./useFileUpload";
+import { UploadedFile, UseMultiFileUploadReturn } from "../types";
+import { useDeleteUploads } from "../api/useDeleteUpload";
+import { useFileUpload } from "../api/useFileUpload";
 
-export const useMultiFileUpload = ({
-  onUploadSuccess,
-}: UseMultiFileUploadProps): UseMultiFileUploadReturn => {
-  const fileInputRef = useRef<HTMLInputElement>(
-    null as unknown as HTMLInputElement
-  );
+export const useMultiFileUpload = (): UseMultiFileUploadReturn => {
+  const fileInputRef = useRef<HTMLInputElement>(null!);
   const [files, setFiles] = useState<UploadedFile[]>([]);
   const [isDragging, setIsDragging] = useState(false);
 
-  // This is your actual file upload mutation from react-query, etc.
-  const { mutate: uploadFile, isPending } = useFileUpload({
-    onSuccess: onUploadSuccess,
-  });
+  const { mutate: uploadFile, isPending: uploadPending } = useFileUpload();
+  const { mutate: deleteUploads, isPending: deletePending } =
+    useDeleteUploads();
+
+  const clearFiles = () => {
+    setFiles([]);
+  };
 
   const handleFiles = (fileList: FileList | null) => {
     if (!fileList) return;
-    const newFiles = Array.from(fileList);
 
-    newFiles.forEach((file) => {
-      const newFileState: UploadedFile = {
-        id: Date.now() + Math.random(),
-        file,
-        status: "uploading",
-        preview: URL.createObjectURL(file),
-      };
-      setFiles((prev) => [...prev, newFileState]);
+    const filesArray = Array.from(fileList);
+    const formData = new FormData();
+    filesArray.forEach((file) => formData.append("files", file));
 
-      uploadFile(file, {
-        onSuccess: (url) => {
-          setFiles((prev) =>
-            prev.map((f) =>
-              f.id === newFileState.id ? { ...f, status: "success", url } : f
-            )
-          );
-        },
-        onError: () => {
-          setFiles((prev) =>
-            prev.map((f) =>
-              f.id === newFileState.id ? { ...f, status: "error" } : f
-            )
-          );
-        },
-      });
+    // Create new file states with uploading status
+    const newFiles: UploadedFile[] = filesArray.map((file) => ({
+      id: Date.now() + Math.random(),
+      file,
+      preview: URL.createObjectURL(file),
+      status: "uploading",
+      publicId: "",
+    }));
+
+    setFiles((prev) => [...prev, ...newFiles]);
+
+    uploadFile(formData, {
+      onSuccess: (data) => {
+        setFiles((prev) => {
+          const updated = [...prev];
+
+          // Find and update each newly uploaded file by ID
+          newFiles.forEach((newFile, i) => {
+            const index = updated.findIndex((f) => f.id === newFile.id);
+            if (index !== -1 && data.images[i]) {
+              updated[index] = {
+                ...updated[index],
+                status: "success",
+                url: data.images[i].url,
+                publicId: data.images[i].publicId,
+              };
+            }
+          });
+
+          return updated;
+        });
+      },
     });
   };
 
   const removeFile = (id: number) => {
+    const file = files.find((f) => f.id === id);
+    if (file?.publicId) {
+      deleteUploads({ publicIds: [file.publicId] });
+    }
     setFiles((prev) => prev.filter((f) => f.id !== id));
   };
 
   const removeAllFiles = () => {
+    const publicIds = files
+      .map((f) => f.publicId)
+      .filter((id): id is string => Boolean(id));
+
+    if (publicIds.length) {
+      deleteUploads({ publicIds });
+    }
     setFiles([]);
   };
 
-  useEffect(() => {
-    const successfulUploads = files.filter((f) => f.status === "success");
-    const allDone = files.every(
-      (f) => f.status === "success" || f.status === "error"
-    );
-    if (allDone && successfulUploads.length > 0) {
-      const urls = successfulUploads
-        .map((f) => f.url)
-        .filter(Boolean) as string[];
-      if (urls.length > 0) onUploadSuccess(urls);
-    }
-  }, [files, onUploadSuccess]);
+  // ✅ NEW: Method to get successful uploads when needed
+  const getSuccessfulUploads = () => {
+    return files
+      .filter((f) => f.status === "success" && f.url)
+      .map((f) => ({ url: f.url!, publicId: f.publicId }));
+  };
 
   useEffect(() => {
     return () => {
-      files.forEach((file) => URL.revokeObjectURL(file.preview));
+      files.forEach((f) => URL.revokeObjectURL(f.preview));
     };
   }, [files]);
 
@@ -102,10 +113,12 @@ export const useMultiFileUpload = ({
     ref: fileInputRef,
     type: "file" as const,
     multiple: true,
-    onChange: (e: React.ChangeEvent<HTMLInputElement>) =>
-      handleFiles(e.target.files),
+    onChange: (e: React.ChangeEvent<HTMLInputElement>) => {
+      handleFiles(e.target.files);
+      e.target.value = ""; // Reset input
+    },
     className: "hidden",
-    disabled: isPending,
+    disabled: uploadPending,
   });
 
   return {
@@ -115,5 +128,9 @@ export const useMultiFileUpload = ({
     getInputProps,
     removeFile,
     removeAllFiles,
+    deletePending,
+    uploadPending,
+    clearFiles,
+    getSuccessfulUploads, // ✅ NEW: Export this method
   };
 };

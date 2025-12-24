@@ -1,8 +1,7 @@
-// src/components/UploadPhotoSection.tsx
 "use client";
 
+import React, { useEffect } from "react";
 import Image from "next/image";
-import React from "react";
 import clsx from "clsx";
 import {
   Loader2,
@@ -13,19 +12,25 @@ import {
   Image as ImageIcon,
 } from "lucide-react";
 
+import { UploadedImage } from "../types";
 import { useMultiFileUpload } from "../hooks/useMultiFileUpload";
 import { Button } from "./Button";
+import { Loader } from "./Loader";
 
 interface UploadPhotoSectionProps {
-  onUploadSuccess: (urls: string | string[]) => void;
   className?: string;
   label?: string;
+  setUploading: React.Dispatch<React.SetStateAction<boolean>>;
+  setRemoveAllFiles?: (fn: () => void) => void; // new prop
+  setGetSuccessfulUploads: (fn: () => UploadedImage[]) => void;
 }
 
 export const UploadPhotoSection: React.FC<UploadPhotoSectionProps> = ({
-  onUploadSuccess,
   className,
+  setUploading,
+  setRemoveAllFiles,
   label,
+  setGetSuccessfulUploads,
 }) => {
   const {
     getRootProps,
@@ -34,9 +39,34 @@ export const UploadPhotoSection: React.FC<UploadPhotoSectionProps> = ({
     isDragging,
     removeFile,
     removeAllFiles,
-  } = useMultiFileUpload({
-    onUploadSuccess,
-  });
+    deletePending,
+    clearFiles,
+    getSuccessfulUploads,
+  } = useMultiFileUpload();
+
+  useEffect(() => {
+    if (files.length === 0) {
+      setUploading(false);
+      return;
+    }
+
+    const anyUploading = files.some((f) => f.status === "uploading");
+    setUploading(anyUploading);
+  }, [files, setUploading]);
+
+  React.useEffect(() => {
+    if (setRemoveAllFiles) {
+      setRemoveAllFiles(() => clearFiles);
+    }
+  }, [removeAllFiles, setRemoveAllFiles]);
+
+  React.useEffect(() => {
+    if (setGetSuccessfulUploads) {
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      //@ts-ignore
+      setGetSuccessfulUploads(() => getSuccessfulUploads());
+    }
+  }, [getSuccessfulUploads, setGetSuccessfulUploads]);
 
   return (
     <div className={className}>
@@ -80,7 +110,7 @@ export const UploadPhotoSection: React.FC<UploadPhotoSectionProps> = ({
                 variant="secondary"
                 onClick={removeAllFiles}
                 size="md"
-                className="rounded-md!"
+                className="rounded-md! bg-red-state/70! border-none!"
               >
                 Clear photos
               </Button>
@@ -101,11 +131,16 @@ export const UploadPhotoSection: React.FC<UploadPhotoSectionProps> = ({
                         {fileState.file.name}
                       </span> */}
                     <button
+                      disabled={deletePending}
                       type="button"
                       onClick={() => removeFile(fileState.id)}
                       className="size-6 centered right-1 top-1 absolute transition-colors bg-white rounded-full"
                     >
-                      <Trash2 size={12} className="text-red-state" />
+                      {deletePending ? (
+                        <Loader />
+                      ) : (
+                        <Trash2 size={12} className="text-red-state" />
+                      )}
                     </button>
                   </div>
                   <div className="flex items-center gap-2 mt-2">
