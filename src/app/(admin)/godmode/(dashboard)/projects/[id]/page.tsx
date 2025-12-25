@@ -54,13 +54,18 @@ const Page = () => {
           </div>
           <div className="flex flex-col-reverse md:flex-row w-full justify-between ">
             <div className="hidden md:block md:border-l-black md:border-l h-full" />
-            <ProjectImgView
-              imgFiles={
-                imgFiles || [
-                  "https://cdn-icons-png.flaticon.com/512/685/685669.png",
-                ]
-              }
-            />
+            {imgFiles && imgFiles?.length > 0 ? (
+              <ProjectImgView
+                imgFiles={
+                  imgFiles || [
+                    "https://cdn-icons-png.flaticon.com/512/685/685669.png",
+                  ]
+                }
+              />
+            ) : (
+              <div className="mt-20">No Image Uploaded</div>
+            )}
+
             <div className="border-t border-t-black md:border-l-black md:border-l h-full block" />
 
             <h1 className="pb-12 pt-6 px-6 lg:max-w-[567px] mx-auto sm:mx-0 md:hidden">
@@ -77,6 +82,9 @@ const Page = () => {
             </Link>
           </div>
         </section>
+      )}
+      {imgFiles?.length === 0 && (
+        <div className="border-b border-b-black w-ful" />
       )}
     </div>
   );
