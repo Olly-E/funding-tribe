@@ -4,6 +4,8 @@ import { Pencil, Trash2 } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { MouseEvent } from "react";
 import Link from "next/link";
+import { useDeleteProject } from "../api/useDeleteProject";
+import { Loader } from "@/app/components/Loader";
 
 interface IProjectCard {
   title: string;
@@ -12,8 +14,13 @@ interface IProjectCard {
 }
 const ProjectCard = ({ image, title, slug }: IProjectCard) => {
   const route = useRouter();
+  const { mutate, isPending: deletePending } = useDeleteProject(slug);
 
-  const handleDeleteProject = () => {};
+  const handleDeleteProject = (e: MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    e.stopPropagation();
+    mutate();
+  };
 
   const handleEditProject = (e: MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
@@ -37,10 +44,15 @@ const ProjectCard = ({ image, title, slug }: IProjectCard) => {
       <div className="mt-2 items-center gap-2 w-fit rounded-md hidden group-hover:flex absolute top-2 left-2 z-10">
         <button
           onClick={handleDeleteProject}
+          disabled={deletePending}
           type="button"
           className="rounded-full bg-white centered size-[34px]"
         >
-          <Trash2 className="size-4 text-red-state" />
+          {deletePending ? (
+            <Loader />
+          ) : (
+            <Trash2 className="size-4 text-red-state" />
+          )}
         </button>
         <button
           onClick={handleEditProject}

@@ -5,7 +5,6 @@ import { ArrowLeft } from "lucide-react";
 import React from "react";
 
 import { addNewNewsSchema } from "@/app/features/dashboard/utils/validationSchema";
-import { UploadPhotoSection } from "@/app/components/UploadPhotoSection";
 import { TextAreaField } from "@/app/components/form/TextAreaField";
 import { InputField } from "@/app/components/form/InputField";
 import { Button } from "@/app/components/Button";
@@ -26,6 +25,8 @@ const NewNewsPage = () => {
       description: "",
     },
   });
+
+  
   return (
     <div className="px-6">
       <div className="sm:w-[644px] mx-auto my-[25px] px-6 sm:px-[50px] rounded-[20px] border border-black bg-[#FFFFFF] py-6 sm:py-[50px]">
