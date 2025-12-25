@@ -47,10 +47,7 @@ const ProjectPage = () => {
               <ProjectCard
                 key={project.slug}
                 title={project.title}
-                image={
-                  project?.imgUrls?.[0]?.url ||
-                  "https://cdn-icons-png.flaticon.com/512/685/685669.png"
-                }
+                image={project?.imgUrls?.[0]?.url as string}
                 slug={project.slug}
               />
             );

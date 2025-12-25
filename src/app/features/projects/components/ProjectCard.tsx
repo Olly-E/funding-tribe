@@ -31,15 +31,27 @@ const ProjectCard = ({ image, title, slug }: IProjectCard) => {
 
   return (
     <Link href={`/godmode/projects/${slug}`} className="group relative">
-      <div className="relative h-[221px] w-full sm:w-[184px] rounded-[20px] overflow-hidden">
-        <Image
-          src={image}
-          alt="project-img"
-          fill
-          className="object-cover"
-          sizes="(max-width: 640px) 100vw, 184px"
-        />
-      </div>
+      {image ? (
+        <div className="relative h-[221px] w-full sm:w-[184px] rounded-[20px] overflow-hidden">
+          <Image
+            src={image}
+            alt="project-img"
+            fill
+            className="object-cover"
+            sizes="(max-width: 640px) 100vw, 184px"
+          />
+        </div>
+      ) : (
+        <div className="relative h-[221px] centered w-full sm:w-[184px] rounded-[20px] overflow-hidden bg-black/10">
+          <Image
+            src="https://cdn-icons-png.flaticon.com/512/685/685669.png"
+            alt="project-img"
+            className="w-20 h-20 min-w-20"
+            width={80}
+            height={80}
+          />
+        </div>
+      )}
       <div className="pl-2.5 flex gap-10 mt-10">
         <p className="text-sm uppercase font-bold w-full md:w-[184px] h-full">
           {title}
