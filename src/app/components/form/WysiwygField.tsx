@@ -1,56 +1,72 @@
-import * as React from "react";
+"use client";
+import React from "react";
 import clsx from "clsx";
-import { FieldError, UseFormRegisterReturn } from "react-hook-form";
+
 import { Label } from "../Elements/Label";
 
-interface WysiwygField {
+interface WysiwygFieldProps {
   id: string;
-  placeholder?: string;
-  autoFocus?: boolean;
-  isRequired?: boolean;
-  registration: Partial<UseFormRegisterReturn>;
-  hasError: FieldError | undefined;
-  className?: string;
-  label?: string;
-  rows?: number;
-  limit?: number | null;
   value?: string;
-  labelClassName?: string;
+  onChange?: (html: string) => void;
+  hasError?: unknown;
+  label?: string;
+  isRequired?: boolean;
+  clearSignal?: number;
 }
 
-export const WysiwygField: React.FC<WysiwygField> = ({
+export const WysiwygField: React.FC<WysiwygFieldProps> = ({
   id,
-  placeholder,
-  autoFocus,
-  registration,
-  className,
+  value,
+  onChange,
   hasError,
   label,
-  labelClassName,
   isRequired,
+  clearSignal,
 }) => {
   const editorRef = React.useRef<HTMLDivElement>(null);
+  const lastValueRef = React.useRef<string>("");
+  const [isBold, setIsBold] = React.useState(false);
+  const [isItalic, setIsItalic] = React.useState(false);
 
-  const exec = (command: "bold" | "italic") => {
-    document.execCommand(command);
+  // Sync editor when value changes (edit mode)
+  React.useEffect(() => {
+    const updateState = () => {
+      setIsBold(document.queryCommandState("bold"));
+      setIsItalic(document.queryCommandState("italic"));
+    };
+
+    document.addEventListener("selectionchange", updateState);
+    return () => document.removeEventListener("selectionchange", updateState);
+  }, []);
+
+  // Update RHF + toolbar state
+  const emitChange = () => {
+    if (!editorRef.current) return;
+
+    onChange?.(editorRef.current.innerHTML);
+    setIsBold(document.queryCommandState("bold"));
+    setIsItalic(document.queryCommandState("italic"));
+  };
+
+  const applyFormat = (command: "bold" | "italic") => {
     editorRef.current?.focus();
+    document.execCommand(command);
+    emitChange();
   };
 
-  const handleInput = () => {
-    if (!editorRef.current || !registration.onChange) return;
-
-    registration.onChange({
-      target: {
-        name: registration.name,
-        value: editorRef.current.innerHTML,
-      },
-    });
-  };
+  React.useEffect(() => {
+    if (editorRef.current) {
+      editorRef.current.innerHTML = "";
+      lastValueRef.current = "";
+      setIsBold(false);
+      setIsItalic(false);
+    }
+  }, [clearSignal]);
 
   return (
     <div>
       {label && (
-        <Label htmlFor={id} isRequired={isRequired} className={labelClassName}>
+        <Label htmlFor={id} isRequired={isRequired}>
           {label}
         </Label>
       )}
@@ -59,15 +75,24 @@ export const WysiwygField: React.FC<WysiwygField> = ({
       <div className="flex gap-2 mb-2">
         <button
           type="button"
-          onClick={() => exec("bold")}
-          className="px-3 py-1 border rounded font-bold"
+          onMouseDown={(e) => e.preventDefault()}
+          onClick={() => applyFormat("bold")}
+          className={clsx(
+            "px-2 py-1 border rounded font-bold",
+            isBold ? "bg-black text-white" : "bg-white"
+          )}
         >
           B
         </button>
+
         <button
           type="button"
-          onClick={() => exec("italic")}
-          className="px-3 py-1 border rounded italic"
+          onMouseDown={(e) => e.preventDefault()}
+          onClick={() => applyFormat("italic")}
+          className={clsx(
+            "px-2 py-1 border rounded italic",
+            isItalic ? "bg-black text-white" : "bg-white"
+          )}
         >
           I
         </button>
@@ -77,24 +102,13 @@ export const WysiwygField: React.FC<WysiwygField> = ({
       <div
         ref={editorRef}
         contentEditable
-        onInput={handleInput}
-        data-placeholder={placeholder}
+        onInput={emitChange}
+        onKeyUp={emitChange}
+        onMouseUp={emitChange}
         className={clsx(
-          "min-h-[120px] w-full py-4 px-4 border rounded-md outline-none",
-          "focus:border-black",
-          "before:content-[attr(data-placeholder)] before:text-black/40 before:pointer-events-none",
-          "empty:before:block",
-          hasError && "border-red-500",
-          className
+          "min-h-[120px] border px-4 py-3 rounded-md outline-none",
+          hasError ? "border-red-500" : "border-black/30"
         )}
-      />
-
-      {/* Hidden textarea for react-hook-form */}
-      <textarea
-        {...registration}
-        id={id}
-        className="hidden"
-        readOnly
       />
     </div>
   );

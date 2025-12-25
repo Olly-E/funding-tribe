@@ -11,13 +11,13 @@ import { useProjectDetails } from "@/app/features/projects/api/useProjectDetails
 import { useUpdateProject } from "@/app/features/projects/api/useUpdateProject";
 import { useCreateProject } from "@/app/features/projects/api/useCreateProject";
 import { UploadPhotoSection } from "@/app/components/UploadPhotoSection";
+import { WysiwygField } from "@/app/components/form/WysiwygField";
 import { FullPageLoader } from "@/app/components/FullPageLoader";
 import { AddProjectForm } from "@/app/features/projects/types";
 import { InputField } from "@/app/components/form/InputField";
 import { useRouter, useSearchParams } from "next/navigation";
 import { Button } from "@/app/components/Button";
 import { UploadedImage } from "@/app/types";
-import { WysiwygField } from "@/app/components/form/WysiwygField";
 
 const NewProjectPage = () => {
   const [files, setGetSuccessfulUploadsFn] = React.useState<UploadedImage[]>(
@@ -25,6 +25,7 @@ const NewProjectPage = () => {
   );
   const [existingImgs, setExistingImgs] = React.useState<UploadedImage[]>([]);
   const [uploading, setUploading] = React.useState<boolean>(false);
+  const [editorResetKey, setEditorResetKey] = React.useState(0);
   const params = useSearchParams().get("id");
   const route = useRouter();
 
@@ -42,6 +43,7 @@ const NewProjectPage = () => {
   const {
     register,
     reset,
+    watch,
     setValue,
     handleSubmit,
     formState: { errors },
@@ -53,6 +55,9 @@ const NewProjectPage = () => {
       description: "",
     },
   });
+
+  // eslint-disable-next-line react-hooks/incompatible-library
+  const description = watch("description");
 
   const onSubmit = (values: { title: string; description: string }) => {
     const mergedImages: UploadedImage[] = editMode
@@ -68,17 +73,22 @@ const NewProjectPage = () => {
     if (editMode) {
       mutateEditProject(payload, {
         onSuccess: () => {
-          reset();
+          reset({ title: "", description: "" });
           setGetSuccessfulUploadsFn([]);
           setExistingImgs([]);
           removeAllFilesFn?.();
+          setEditorResetKey((k) => k + 1);
           route.push("/godmode/projects");
         },
       });
     } else {
       mutateProject(payload, {
         onSuccess: () => {
-          reset();
+          reset({
+            title: "",
+            description: "",
+          });
+          setEditorResetKey((k) => k + 1);
           setGetSuccessfulUploadsFn([]);
           setExistingImgs([]);
           removeAllFilesFn?.();
@@ -109,6 +119,7 @@ const NewProjectPage = () => {
   if (!!params && detailsPending) {
     return <FullPageLoader className="h-[60vh]! " />;
   }
+
   return (
     <form className="px-6" onSubmit={handleSubmit(onSubmit)}>
       <div className="md:w-[644px] mx-auto my-[25px] px-6 sm:px-[50px] rounded-[20px] border border-black bg-[#FFFFFF] py-6 sm:py-[50px]">
@@ -133,11 +144,14 @@ const NewProjectPage = () => {
         <div className="mt-6">
           <WysiwygField
             id="description"
-            className="bg-none"
             label="Description"
-            registration={{ ...register("description") }}
+            value={description}
+            clearSignal={editorResetKey}
             hasError={errors.description}
             isRequired
+            onChange={(val) =>
+              setValue("description", val, { shouldValidate: true })
+            }
           />
         </div>
         <div className="">
