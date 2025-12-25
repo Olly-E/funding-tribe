@@ -6,11 +6,8 @@ import ProjectCard from "@/app/features/projects/components/ProjectCard";
 import { FullPageLoader } from "@/app/components/FullPageLoader";
 import { Button } from "@/app/components/Button";
 
-import projectCImg1 from "../../../../../../public/projectCImg1.webp";
-
 const ProjectPage = () => {
   const { data, isPending } = useAllAdminProjects();
-  
 
   const projectData = data?.data || [];
   return (
@@ -50,7 +47,10 @@ const ProjectPage = () => {
               <ProjectCard
                 key={project.slug}
                 title={project.title}
-                image={projectCImg1}
+                image={
+                  project?.imgUrls?.[0].url ||
+                  "https://cdn-icons-png.flaticon.com/512/685/685669.png"
+                }
                 slug={project.slug}
               />
             );

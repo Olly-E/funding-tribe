@@ -1,15 +1,16 @@
 "use client";
-import Image, { StaticImageData } from "next/image";
 import { Pencil, Trash2 } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { MouseEvent } from "react";
+import Image from "next/image";
 import Link from "next/link";
+
 import { useDeleteProject } from "../api/useDeleteProject";
 import { Loader } from "@/app/components/Loader";
 
 interface IProjectCard {
   title: string;
-  image: StaticImageData;
+  image: string;
   slug: string;
 }
 const ProjectCard = ({ image, title, slug }: IProjectCard) => {
@@ -29,12 +30,16 @@ const ProjectCard = ({ image, title, slug }: IProjectCard) => {
   };
 
   return (
-    <Link href={`/godmode/projects/${title}`} className="group relative">
-      <Image
-        alt="project-img"
-        className="h-[221px] sm:w-[184px] object-cover rounded-[20px]"
-        src={image}
-      />
+    <Link href={`/godmode/projects/${slug}`} className="group relative">
+      <div className="relative h-[221px] w-full sm:w-[184px] rounded-[20px] overflow-hidden">
+        <Image
+          src={image}
+          alt="project-img"
+          fill
+          className="object-cover"
+          sizes="(max-width: 640px) 100vw, 184px"
+        />
+      </div>
       <div className="pl-2.5 flex gap-10 mt-10">
         <p className="text-sm uppercase font-bold w-full md:w-[184px] h-full">
           {title}

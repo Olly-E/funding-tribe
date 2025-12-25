@@ -43,7 +43,6 @@ const NewProjectPage = () => {
     register,
     reset,
     setValue,
-    getValues,
     handleSubmit,
     formState: { errors },
   } = useForm<AddProjectForm>({

@@ -7,7 +7,7 @@ import { useState, useEffect } from "react";
 interface IImageSlider {
   handleActiveImg: (index: number) => void;
   active: number;
-  data: StaticImageData[];
+  data: string[];
 }
 
 const ImageSlider = ({
@@ -92,7 +92,7 @@ const ImageSlider = ({
                   } bg-gray-100`}
                 >
                   <Image
-                    src={img.src}
+                    src={img}
                     alt={`slide-${realIdx}`}
                     fill
                     className="object-cover"

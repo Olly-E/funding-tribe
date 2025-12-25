@@ -19,7 +19,7 @@ export const useUpdateProject = (projectId: string) => {
     onSuccess: () => {
       toast.success("Project updated.");
       queryClient.invalidateQueries({
-        queryKey: adminProjectKey.lists(),
+        queryKey: adminProjectKey.all,
       });
     },
     onError: (error) => {
