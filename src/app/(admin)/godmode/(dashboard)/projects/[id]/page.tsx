@@ -36,7 +36,11 @@ const Page = () => {
             </div>
             <div className="border-t-black border-t block" />
             <div className="py-8 md:pt-[60px] px-6 sm:px-[50px] md:pb-[200px]">
-              <p>{description || ""}</p>
+              <div
+                dangerouslySetInnerHTML={{
+                  __html: description || "",
+                }}
+              />{" "}
               <Link
                 href={`/godmode/projects/`}
                 className="mt-10 md:mt-20 inline-block sm:text-[24px] group relative underline-offset-2"

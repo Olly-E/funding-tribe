@@ -58,7 +58,7 @@ const ProjectDetailsPage = () => {
         </div>
         <div className="flex flex-col-reverse md:flex-row w-full justify-between ">
           <div className="hidden md:block md:border-l-black md:border-l h-full" />
-          <ProjectImgView />
+          {/* <ProjectImgView /> */}
           <div className="border-t border-t-black md:border-l-black md:border-l h-full block" />
           <h1 className="py-12 px-6 lg:max-w-[567px] mx-auto sm:mx-0 md:hidden">
             Bexley Road, Northumberland Heath

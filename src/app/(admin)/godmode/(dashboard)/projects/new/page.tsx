@@ -11,13 +11,13 @@ import { useProjectDetails } from "@/app/features/projects/api/useProjectDetails
 import { useUpdateProject } from "@/app/features/projects/api/useUpdateProject";
 import { useCreateProject } from "@/app/features/projects/api/useCreateProject";
 import { UploadPhotoSection } from "@/app/components/UploadPhotoSection";
-import { TextAreaField } from "@/app/components/form/TextAreaField";
 import { FullPageLoader } from "@/app/components/FullPageLoader";
 import { AddProjectForm } from "@/app/features/projects/types";
 import { InputField } from "@/app/components/form/InputField";
 import { useRouter, useSearchParams } from "next/navigation";
 import { Button } from "@/app/components/Button";
 import { UploadedImage } from "@/app/types";
+import { WysiwygField } from "@/app/components/form/WysiwygField";
 
 const NewProjectPage = () => {
   const [files, setGetSuccessfulUploadsFn] = React.useState<UploadedImage[]>(
@@ -26,7 +26,7 @@ const NewProjectPage = () => {
   const [existingImgs, setExistingImgs] = React.useState<UploadedImage[]>([]);
   const [uploading, setUploading] = React.useState<boolean>(false);
   const params = useSearchParams().get("id");
-  const route = useRouter()
+  const route = useRouter();
 
   const { mutate: mutateProject, isPending: isPendingProject } =
     useCreateProject();
@@ -72,7 +72,7 @@ const NewProjectPage = () => {
           setGetSuccessfulUploadsFn([]);
           setExistingImgs([]);
           removeAllFilesFn?.();
-          route.push('/godmode/projects')
+          route.push("/godmode/projects");
         },
       });
     } else {
@@ -106,7 +106,7 @@ const NewProjectPage = () => {
     setExistingImgs((prev) => prev.filter((img) => img.publicId !== publicId));
   };
 
-  if (detailsPending) {
+  if (!!params && detailsPending) {
     return <FullPageLoader className="h-[60vh]! " />;
   }
   return (
@@ -131,7 +131,7 @@ const NewProjectPage = () => {
           />
         </div>
         <div className="mt-6">
-          <TextAreaField
+          <WysiwygField
             id="description"
             className="bg-none"
             label="Description"
