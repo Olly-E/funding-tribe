@@ -1,14 +1,14 @@
-'use client'
-import Image, { StaticImageData } from "next/image";
+"use client";
 import { Pencil, Trash2 } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { MouseEvent } from "react";
+import Image from "next/image";
 import Link from "next/link";
 
 interface INewsCard {
   title: string;
   slug: string;
-  img: StaticImageData;
+  img: string;
 }
 const NewsCard = ({ slug, title, img }: INewsCard) => {
   const route = useRouter();
@@ -22,11 +22,27 @@ const NewsCard = ({ slug, title, img }: INewsCard) => {
   };
   return (
     <Link href={`/godmode/news/${slug}`} className="relative group">
-      <Image
-        alt="news-img"
-        className="h-[221px] sm:w-[184px] object-cover rounded-[20px]"
-        src={img}
-      />
+      {img ? (
+        <div className="relative h-[221px] w-full sm:w-[184px] rounded-[20px] overflow-hidden">
+          <Image
+            src={img}
+            alt="project-img"
+            fill
+            className="object-cover"
+            sizes="(max-width: 640px) 100vw, 184px"
+          />
+        </div>
+      ) : (
+        <div className="relative h-[221px] centered w-full sm:w-[184px] rounded-[20px] overflow-hidden bg-black/10">
+          <Image
+            src="https://cdn-icons-png.flaticon.com/512/685/685669.png"
+            alt="project-img"
+            className="w-20 h-20 min-w-20"
+            width={80}
+            height={80}
+          />
+        </div>
+      )}
       <div className="pl-2.5 flex gap-10 mt-10">
         <p className="text-sm uppercase font-bold w-full md:w-[184px] h-full">
           {title}
@@ -39,7 +55,11 @@ const NewsCard = ({ slug, title, img }: INewsCard) => {
           >
             <Trash2 className="size-4 text-red-state" />
           </button>
-          <button type="button" onClick={handleEditNews} className="rounded-full bg-white centered size-[34px]">
+          <button
+            type="button"
+            onClick={handleEditNews}
+            className="rounded-full bg-white centered size-[34px]"
+          >
             <Pencil className="size-4 text-black" />
           </button>
         </div>

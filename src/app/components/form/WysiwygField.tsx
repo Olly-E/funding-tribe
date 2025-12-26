@@ -28,7 +28,26 @@ export const WysiwygField: React.FC<WysiwygFieldProps> = ({
   const [isBold, setIsBold] = React.useState(false);
   const [isItalic, setIsItalic] = React.useState(false);
 
-  // Sync editor when value changes (edit mode)
+  React.useEffect(() => {
+    if (!editorRef.current) return;
+
+    if (value !== undefined && value !== editorRef.current.innerHTML) {
+      editorRef.current.innerHTML = value;
+      lastValueRef.current = value;
+    }
+  }, [value]);
+
+  // ✅ Handle clear signal
+  React.useEffect(() => {
+    if (editorRef.current && clearSignal !== undefined) {
+      editorRef.current.innerHTML = "";
+      lastValueRef.current = "";
+      setIsBold(false);
+      setIsItalic(false);
+    }
+  }, [clearSignal]);
+
+  // Sync toolbar state on selection change
   React.useEffect(() => {
     const updateState = () => {
       setIsBold(document.queryCommandState("bold"));
@@ -43,7 +62,14 @@ export const WysiwygField: React.FC<WysiwygFieldProps> = ({
   const emitChange = () => {
     if (!editorRef.current) return;
 
-    onChange?.(editorRef.current.innerHTML);
+    const newValue = editorRef.current.innerHTML;
+
+    // Only emit if value actually changed
+    if (newValue !== lastValueRef.current) {
+      lastValueRef.current = newValue;
+      onChange?.(newValue);
+    }
+
     setIsBold(document.queryCommandState("bold"));
     setIsItalic(document.queryCommandState("italic"));
   };
@@ -53,15 +79,6 @@ export const WysiwygField: React.FC<WysiwygFieldProps> = ({
     document.execCommand(command);
     emitChange();
   };
-
-  React.useEffect(() => {
-    if (editorRef.current) {
-      editorRef.current.innerHTML = "";
-      lastValueRef.current = "";
-      setIsBold(false);
-      setIsItalic(false);
-    }
-  }, [clearSignal]);
 
   return (
     <div>

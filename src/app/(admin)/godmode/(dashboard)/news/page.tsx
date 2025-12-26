@@ -1,12 +1,20 @@
+"use client";
 import { Search } from "lucide-react";
 
+import { useAllAdminNews } from "@/app/features/news/api/useAllAdminNews";
 import NewsCard from "@/app/features/news/components/NewsCard";
 import { Button } from "@/app/components/Button";
 import { NEWS_DATA } from "@/app/utils/data";
 
 import newsImg from "../../../../../../public/newsImg.png";
+import { FullPageLoader } from "@/app/components/FullPageLoader";
 
 const NewsPae = () => {
+  const { data, isPending } = useAllAdminNews();
+  const newsData = data?.data || [];
+
+  console.log({ data });
+
   return (
     <div className="pb-10 mt-[31px]">
       <div className="px-6 md:px-[62px] mb-[25px] flex flex-col md:flex-row gap-10 items-center justify-between">
@@ -35,18 +43,24 @@ const NewsPae = () => {
           </Button>
         </div>
       </div>
-      <div className="grid xs:grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 md:gap-10 xl:gap-20 pl-6 sm:pl-[50px] xl:pl-10 pr-6 sm:pr-[50px] xl:justify-items-end">
-        {NEWS_DATA.map((news) => {
-          return (
-            <NewsCard
-              img={newsImg}
-              key={news.slug}
-              slug={news.slug}
-              title={news.title}
-            />
-          );
-        })}
-      </div>
+      {isPending ? (
+        <div>
+          <FullPageLoader className="h-[60vh]!" />
+        </div>
+      ) : (
+        <div className="grid xs:grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 md:gap-10 xl:gap-20 pl-6 sm:pl-[50px] xl:pl-10 pr-6 sm:pr-[50px] xl:justify-items-end">
+          {newsData.map((news) => {
+            return (
+              <NewsCard
+                img={news?.imgUrl?.url || ''}
+                key={news.slug}
+                slug={news.slug}
+                title={news.title}
+              />
+            );
+          })}
+        </div>
+      )}
     </div>
   );
 };

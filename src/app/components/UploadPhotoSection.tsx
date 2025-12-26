@@ -12,8 +12,8 @@ import {
   Image as ImageIcon,
 } from "lucide-react";
 
-import { UploadedImage } from "../types";
 import { useMultiFileUpload } from "../hooks/useMultiFileUpload";
+import { UploadedImage } from "../types";
 import { Button } from "./Button";
 import { Loader } from "./Loader";
 
@@ -23,6 +23,7 @@ interface UploadPhotoSectionProps {
   setUploading: React.Dispatch<React.SetStateAction<boolean>>;
   setRemoveAllFiles?: (fn: () => void) => void; // new prop
   setGetSuccessfulUploads: (fn: () => UploadedImage[]) => void;
+  multiple: boolean;
 }
 
 export const UploadPhotoSection: React.FC<UploadPhotoSectionProps> = ({
@@ -31,6 +32,7 @@ export const UploadPhotoSection: React.FC<UploadPhotoSectionProps> = ({
   setRemoveAllFiles,
   label,
   setGetSuccessfulUploads,
+  multiple,
 }) => {
   const {
     getRootProps,
@@ -42,7 +44,7 @@ export const UploadPhotoSection: React.FC<UploadPhotoSectionProps> = ({
     deletePending,
     clearFiles,
     getSuccessfulUploads,
-  } = useMultiFileUpload();
+  } = useMultiFileUpload(multiple);
 
   useEffect(() => {
     if (files.length === 0) {
@@ -159,7 +161,7 @@ export const UploadPhotoSection: React.FC<UploadPhotoSectionProps> = ({
             </div>
 
             {/* NEW: The "Add More" card */}
-            {files.length < 5 && (
+            {multiple && files.length < 5 && (
               <div
                 {...getRootProps()}
                 className={clsx(

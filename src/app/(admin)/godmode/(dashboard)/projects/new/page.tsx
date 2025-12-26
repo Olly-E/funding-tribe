@@ -186,7 +186,9 @@ const NewProjectPage = () => {
             setGetSuccessfulUploads={setGetSuccessfulUploadsFn}
             setUploading={setUploading}
             setRemoveAllFiles={setRemoveAllFilesFn}
+            multiple={true}
           />
+
         </div>
         <Button
           disabled={uploading}

@@ -1,11 +1,14 @@
 "use client";
 
 import { useState, useRef, useEffect, DragEvent } from "react";
+
 import { UploadedFile, UseMultiFileUploadReturn } from "../types";
 import { useDeleteUploads } from "../api/useDeleteUpload";
 import { useFileUpload } from "../api/useFileUpload";
 
-export const useMultiFileUpload = (): UseMultiFileUploadReturn => {
+export const useMultiFileUpload = (
+  multiple = true
+): UseMultiFileUploadReturn => {
   const fileInputRef = useRef<HTMLInputElement>(null!);
   const [files, setFiles] = useState<UploadedFile[]>([]);
   const [isDragging, setIsDragging] = useState(false);
@@ -23,33 +26,37 @@ export const useMultiFileUpload = (): UseMultiFileUploadReturn => {
 
     const filesArray = Array.from(fileList);
     const formData = new FormData();
-    filesArray.forEach((file) => formData.append("files", file));
 
-    // Create new file states with uploading status
-    const newFiles: UploadedFile[] = filesArray.map((file) => ({
-      id: Date.now() + Math.random(),
-      file,
-      preview: URL.createObjectURL(file),
-      status: "uploading",
-      publicId: "",
-    }));
+    // Create placeholders for all new files
+    const newFiles: UploadedFile[] = filesArray.map((file) => {
+      formData.append("files", file); // Add to FormData
+      return {
+        id: Date.now() + Math.random(),
+        file,
+        preview: URL.createObjectURL(file),
+        status: "uploading" as const,
+        publicId: "",
+      };
+    });
 
+    // Add new files to state
     setFiles((prev) => [...prev, ...newFiles]);
 
+    // Upload all files in ONE request
     uploadFile(formData, {
       onSuccess: (data) => {
         setFiles((prev) => {
           const updated = [...prev];
 
-          // Find and update each newly uploaded file by ID
-          newFiles.forEach((newFile, i) => {
-            const index = updated.findIndex((f) => f.id === newFile.id);
-            if (index !== -1 && data.images[i]) {
-              updated[index] = {
-                ...updated[index],
+          // Update each new file with its corresponding upload result
+          newFiles.forEach((newFile, index) => {
+            const fileIndex = updated.findIndex((f) => f.id === newFile.id);
+            if (fileIndex !== -1 && data.images[index]) {
+              updated[fileIndex] = {
+                ...updated[fileIndex],
                 status: "success",
-                url: data.images[i].url,
-                publicId: data.images[i].publicId,
+                url: data.images[index].url,
+                publicId: data.images[index].publicId,
               };
             }
           });
@@ -57,9 +64,18 @@ export const useMultiFileUpload = (): UseMultiFileUploadReturn => {
           return updated;
         });
       },
+      onError: () => {
+        // Mark all new files as error
+        setFiles((prev) =>
+          prev.map((f) =>
+            newFiles.some((nf) => nf.id === f.id)
+              ? { ...f, status: "error" as const }
+              : f
+          )
+        );
+      },
     });
   };
-
   const removeFile = (id: number) => {
     const file = files.find((f) => f.id === id);
     if (file?.publicId) {
@@ -112,7 +128,8 @@ export const useMultiFileUpload = (): UseMultiFileUploadReturn => {
   const getInputProps = () => ({
     ref: fileInputRef,
     type: "file" as const,
-    multiple: true,
+    accept: "image/*",
+    multiple: multiple,
     onChange: (e: React.ChangeEvent<HTMLInputElement>) => {
       handleFiles(e.target.files);
       e.target.value = ""; // Reset input

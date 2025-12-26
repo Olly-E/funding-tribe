@@ -20,3 +20,4 @@ export interface IProjectData {
   slug: string;
   _id: string;
 }
+
