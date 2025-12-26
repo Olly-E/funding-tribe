@@ -1,10 +1,11 @@
 "use client";
 import { useRouter, useSearchParams } from "next/navigation";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
 import { ArrowLeft, Trash2 } from "lucide-react";
-import React from "react";
+import { useForm } from "react-hook-form";
+import Image from "next/image";
 import Link from "next/link";
+import React from "react";
 
 import { addNewNewsSchema } from "@/app/features/dashboard/utils/validationSchema";
 import { useNewsDetails } from "@/app/features/news/api/useAdminNewsDetails";
@@ -16,7 +17,6 @@ import { FullPageLoader } from "@/app/components/FullPageLoader";
 import { InputField } from "@/app/components/form/InputField";
 import { Button } from "@/app/components/Button";
 import { UploadedImage } from "@/app/types";
-import Image from "next/image";
 
 const NewNewsPage = () => {
   const [files, setGetSuccessfulUploadsFn] = React.useState<UploadedImage[]>(
@@ -124,7 +124,7 @@ const NewNewsPage = () => {
     setExistingImgs(null);
   };
 
-  if (detailsPending) {
+  if (detailsPending && editMode) {
     return <FullPageLoader className="h-[60vh]! " />;
   }
   return (

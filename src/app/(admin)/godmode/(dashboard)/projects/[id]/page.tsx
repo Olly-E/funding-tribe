@@ -30,7 +30,7 @@ const Page = () => {
                   className="text-black group-hover:text-white"
                 />
               </Link>
-              <h1 className="lg:max-w-[567px] mx-auto sm:mx-0 ">
+              <h1 className="lg:max-w-[567px] mx-auto sm:mx-0 capitalize">
                 {title || ""}
               </h1>
             </div>
@@ -42,7 +42,7 @@ const Page = () => {
                 }}
               />{" "}
               <Link
-                href={`/godmode/projects/`}
+                href={`/godmode/projects`}
                 className="mt-10 md:mt-20 inline-block sm:text-[24px] group relative underline-offset-2"
               >
                 <p className="whitespace-nowrap underline md:no-underline">

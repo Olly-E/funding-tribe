@@ -33,3 +33,8 @@ export const transformError = (error: AxiosErrorResponse): string => {
   }
   return errorDetail;
 };
+
+export const getFormattedDayMonthYear = (date: Date | null) => {
+  if (!date) return "";
+  return dayjs(date).format("YYYY.MM.DD");
+};
