@@ -1,13 +1,19 @@
+"use client";
+import { ArrowRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
+import { useAllAdminProjects } from "@/app/features/projects/api/useAllAdminProjects";
+import { FullPageLoader } from "@/app/components/FullPageLoader";
 import LetConnect from "@/app/components/LetConnect";
 import { PROJECTS } from "@/app/utils/data";
 
 import projectImg from "../../../../public/projectImg.webp";
 
-const page = () => {
+const Page = () => {
+  const { data, isPending } = useAllAdminProjects();
 
+  const projectData = data?.data || [];
   return (
     <div>
       <section className="flex flex-col sm:flex-row gap-10">
@@ -25,28 +31,46 @@ const page = () => {
         <div className="border-t-black border-t block sm:hidden" />
         <div className="flex w-full">
           <div className="h-full border-r border-r-black" />
-          <div className="w-full">
-            {PROJECTS.map((type, index) => {
-              return (
-                <Link href={`/projects/${type.id}`} key={type.id}>
-                  <div className="pl-6 sm:pl-[50px] pr-6 sm:pr-[50px] py-[60px]">
-                    <div className="flex items-center gap-2.5">
-                      <div className="size-[15px] min-w-[15px] bg-black" />
-                      <p className="text-left w-full whitespace-nowrap">
-                        {type.id}
-                      </p>
+          {isPending ? (
+            <div className="w-full justify-center">
+              <FullPageLoader className="h-[50vh]! justify-center! flex" />
+            </div>
+          ) : (
+            <div className="w-full">
+              {projectData.map((type, index) => {
+                return (
+                  <Link
+                    href={`/projects/${type.slug}`}
+                    key={type._id}
+                    className="group"
+                  >
+                    <div className="pl-6 flex text-black/50 transition-colors duration-500 group-hover:text-black justify-between items-center sm:pl-[50px] pr-6 sm:pr-[50px] py-[60px]">
+                      <div className="">
+                        <div className="flex items-center gap-2.5">
+                          <div className="size-[15px] min-w-[15px] bg-black/50 group-hover:bg-black transition-colors duration-500" />
+                          <p className="text-left w-full whitespace-nowrap">
+                            {`0.0${index + 1}`}
+                          </p>
+                        </div>
+                        <h3 className="text-[24px] mt-2 max-w-[390px] sm:max-w-[450px]">
+                          {type.title}
+                        </h3>
+                      </div>
+                      <div className="size-10 overflow-hidden centered">
+                        <ArrowRight
+                          size={24}
+                          className="text-black duration-500 -translate-x-10 transition-all group-hover:translate-x-0"
+                        />
+                      </div>
                     </div>
-                    <h3 className="text-[24px] mt-2 max-w-[390px] sm:max-w-[450px]">
-                      {type.title}
-                    </h3>
-                  </div>
-                  {index < PROJECTS.length - 1 && (
-                    <div className="border-t-black border-t" />
-                  )}{" "}
-                </Link>
-              );
-            })}
-          </div>
+                    {index < PROJECTS.length - 1 && (
+                      <div className="border-t-black border-t" />
+                    )}
+                  </Link>
+                );
+              })}
+            </div>
+          )}
         </div>
       </section>
       <div className="border-t-black border-t" />
@@ -81,4 +105,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;

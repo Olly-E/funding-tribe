@@ -47,7 +47,6 @@ const NewNewsPage = () => {
   const {
     register,
     watch,
-    getValues,
     reset,
     setValue,
     handleSubmit,
