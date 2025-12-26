@@ -1,6 +1,8 @@
+"use client";
+import Image, { StaticImageData } from "next/image";
 import { ArrowDown } from "lucide-react";
-import Image from "next/image";
 import Link from "next/link";
+import React from "react";
 import clsx from "clsx";
 
 import LetConnect from "@/app/components/LetConnect";
@@ -9,7 +11,14 @@ import { FUNDED_TYPE } from "@/app/utils/data";
 import blackLogo from "../../../../public/blackLogo.svg";
 import workImg from "../../../../public/workImg.webp";
 
-const page = () => {
+const Page = () => {
+  const [activeFunded, setActiveFunded] = React.useState<{
+    title: string;
+    description: string;
+    img: StaticImageData;
+  } | null>(null);
+
+  console.log(activeFunded?.title);
   return (
     <div className="">
       <section className="pt-20 lg:pt-[60px] px-6 sm:px-[50px] flex justify-between items-end">
@@ -46,8 +55,21 @@ const page = () => {
       <div className="border-t-black border-t mt-[50px] sm:mt-[90px]" />
       <section className="grid sm:grid-cols-2">
         <div className="hidden sm:block pr-[50px] lg:pr-[99px] pl-6 py-[60px] sm:pl-[50px]">
-          <div className="top-[100px] lg:top-[50px] w-full h-[497px] rounded-br-[120px] overflow-hidden sticky">
-            <Image src={workImg} fill alt="stairs" className="object-cover" />
+          <div
+            key={activeFunded?.title}
+            className={clsx(
+              "top-[100px] lg:top-[50px] grayscale w-full h-[497px] rounded-br-[120px] overflow-hidden sticky"
+            )}
+          >
+            <Image
+              src={activeFunded?.img || workImg}
+              fill
+              alt="funded type"
+              className={clsx(
+                "object-cover transition-all duration-700 ease-out",
+                activeFunded ? "grayscale-0 scale-105" : "grayscale scale-100"
+              )}
+            />
           </div>
         </div>
         <div className="flex">
@@ -55,10 +77,20 @@ const page = () => {
           <div className="w-full">
             {FUNDED_TYPE.map((type, index) => {
               return (
-                <div key={type.id}>
-                  <div className="pl-6 sm:pl-[50px] lg:pl-[108px] pr-6 sm:pr-[50px] py-[50px]">
+                <div
+                  onMouseEnter={() =>
+                    setActiveFunded({
+                      title: type.title,
+                      description: type.description,
+                      img: type.img,
+                    })
+                  }
+                  onMouseLeave={() => setActiveFunded(null)}
+                  key={type.id}
+                >
+                  <div className="pl-6 sm:pl-[50px] group transition-colors duration-500 hover:text-black text-black/50 lg:pl-[108px] pr-6 sm:pr-[50px] py-[50px]">
                     <div className="flex items-center gap-2.5">
-                      <div className="size-[15px] min-w-[15px] bg-black" />
+                      <div className="size-[15px] min-w-[15px] transition-colors duration-500 group-hover:bg-black bg-black/50" />
                       <p className="text-left w-full whitespace-nowrap">
                         {type.id}
                       </p>
@@ -98,4 +130,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;

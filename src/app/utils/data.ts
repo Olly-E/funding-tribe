@@ -1,10 +1,17 @@
 import projectTest from "../../../public/project_test.webp";
+import workImg from "../../../public/workImg.webp";
 import staff1 from "../../../public/staff1.webp";
 import staff2 from "../../../public/staff2.webp";
 import staff3 from "../../../public/staff3.webp";
 import staff4 from "../../../public/staff4.webp";
 import staff5 from "../../../public/staff5.webp";
 import staff6 from "../../../public/staff6.webp";
+import wwImg2 from "../../../public/wwImg2.webp";
+import wwImg3 from "../../../public/wwImg3.webp";
+import wwImg4 from "../../../public/wwImg4.webp";
+import wwImg5 from "../../../public/wwImg5.webp";
+import wwImg6 from "../../../public/wwImg6.webp";
+import wwImg7 from "../../../public/wwImg7.webp";
 
 export const FAQ_DATA = [
   {
@@ -142,42 +149,49 @@ export const FUNDED_TYPE = [
     title: "Land Owners",
     description:
       "We partner with landowners who want to unlock the full value of their property. Whether it has planning or not, we bring the funding and expertise to move it forward and share the uplift.",
+    img: workImg,
   },
   {
     id: "0.02",
     title: "Developers",
     description:
       "We work with experienced and new developers who need capital or support to deliver projects faster and better — without taking on expensive loans.",
+    img: wwImg2,
   },
   {
     id: "0.03",
     title: "Investors",
     description:
       "We offer opportunities for investors to back real developments, not just numbers on paper — sharing transparent returns through real, completed projects.",
+    img: wwImg3,
   },
   {
     id: "0.04",
     title: "Builders & Contractors",
     description:
       "We collaborate with trusted builders who want to grow with us — building at cost in return for a share in the profit.",
+    img: wwImg4,
   },
   {
     id: "0.05",
     title: "Property Owners",
     description:
       "We help owners of existing buildings or underused assets transform their spaces through refurbishment, conversion, or redevelopment.",
+    img: wwImg5,
   },
   {
     id: "0.06",
     title: "Architects & Planning Consultants",
     description:
       "We work with professionals who understand design, compliance, and planning. Together, we make sure every project gets approval and achieves maximum value.",
+    img: wwImg6,
   },
   {
     id: "0.07",
     title: "Joint Venture Partners",
     description:
       "We believe in win-win ventures. Our joint venture partners share the vision, and we share the success.",
+    img: wwImg7,
   },
 ];
 
