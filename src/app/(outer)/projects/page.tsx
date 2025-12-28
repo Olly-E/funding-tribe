@@ -9,6 +9,7 @@ import LetConnect from "@/app/components/LetConnect";
 import { PROJECTS } from "@/app/utils/data";
 
 import projectImg from "../../../../public/projectImg.webp";
+import clsx from "clsx";
 
 const Page = () => {
   const { data, isPending } = useAllAdminProjects();
@@ -44,10 +45,15 @@ const Page = () => {
                     key={type._id}
                     className="group"
                   >
-                    <div className="pl-6 flex text-black/50 transition-colors duration-500 group-hover:text-black justify-between items-center sm:pl-[50px] pr-6 sm:pr-[50px] py-[60px]">
+                    <div className="pl-6 flex transition-colors duration-500 group-hover:text-white justify-between items-center sm:pl-[50px] pr-6 sm:pr-[50px] py-[60px] relative">
+                      <div
+                        className={clsx(
+                          "absolute h-0 w-full group-hover:h-full bg-black transition-all duration-200 top-[50%] translate-y-[-50%] left-0 -z-1 self-center"
+                        )}
+                      />
                       <div className="">
                         <div className="flex items-center gap-2.5">
-                          <div className="size-[15px] min-w-[15px] bg-black/50 group-hover:bg-black transition-colors duration-500" />
+                          <div className="size-[15px] group-hover:bg-white min-w-[15px] bg-black/50 transition-colors duration-500" />
                           <p className="text-left w-full whitespace-nowrap">
                             {`0.0${index + 1}`}
                           </p>

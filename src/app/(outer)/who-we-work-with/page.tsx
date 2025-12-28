@@ -18,7 +18,6 @@ const Page = () => {
     img: StaticImageData;
   } | null>(null);
 
-  console.log(activeFunded?.title);
   return (
     <div className="">
       <section className="pt-20 lg:pt-[60px] px-6 sm:px-[50px] flex justify-between items-end">
@@ -87,10 +86,11 @@ const Page = () => {
                   }
                   onMouseLeave={() => setActiveFunded(null)}
                   key={type.id}
+                  className=""
                 >
-                  <div className="pl-6 sm:pl-[50px] group transition-colors duration-500 hover:text-black text-black/50 lg:pl-[108px] pr-6 sm:pr-[50px] py-[50px]">
+                  <div className="pl-6 sm:pl-[50px] group transition-colors duration-500 text-black relative hover:text-white lg:pl-[108px] pr-6 sm:pr-[50px] py-[50px]">
                     <div className="flex items-center gap-2.5">
-                      <div className="size-[15px] min-w-[15px] transition-colors duration-500 group-hover:bg-black bg-black/50" />
+                      <div className="size-[15px] min-w-[15px] transition-colors duration-500 group-hover:bg-white bg-black" />
                       <p className="text-left w-full whitespace-nowrap">
                         {type.id}
                       </p>
@@ -101,10 +101,15 @@ const Page = () => {
                     <p className="text-base sm:text-[20px] leading-[120%] sm:max-w-[504px] mt-6 max-w-[338px]">
                       {type.description}
                     </p>
+                    <div
+                      className={clsx(
+                        "absolute h-0 w-full group-hover:h-full bg-black transition-all duration-200 top-[50%] translate-y-[-50%] left-0 -z-1 self-center"
+                      )}
+                    />
                   </div>
                   {index < FUNDED_TYPE.length - 1 && (
                     <div className="border-t-black border-t" />
-                  )}{" "}
+                  )}
                 </div>
               );
             })}
