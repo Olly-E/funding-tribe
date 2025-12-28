@@ -2,6 +2,7 @@
 import { ArrowRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import clsx from "clsx";
 
 import { useAllAdminProjects } from "@/app/features/projects/api/useAllAdminProjects";
 import { FullPageLoader } from "@/app/components/FullPageLoader";
@@ -9,7 +10,6 @@ import LetConnect from "@/app/components/LetConnect";
 import { PROJECTS } from "@/app/utils/data";
 
 import projectImg from "../../../../public/projectImg.webp";
-import clsx from "clsx";
 
 const Page = () => {
   const { data, isPending } = useAllAdminProjects();
@@ -53,7 +53,7 @@ const Page = () => {
                       />
                       <div className="">
                         <div className="flex items-center gap-2.5">
-                          <div className="size-[15px] group-hover:bg-white min-w-[15px] bg-black/50 transition-colors duration-500" />
+                          <div className="size-[15px] group-hover:bg-white min-w-[15px] bg-black transition-colors duration-500" />
                           <p className="text-left w-full whitespace-nowrap">
                             {`0.0${index + 1}`}
                           </p>

@@ -1,21 +1,22 @@
 "use client";
 
-import Image, { StaticImageData } from "next/image";
-import React, { useMemo, useState, useEffect } from "react";
+import { useState, useEffect } from "react";
+import Image from "next/image";
+
+import { useAllAdminProjects } from "../features/projects/api/useAllAdminProjects";
 import { useResponsiveVisibility } from "../hooks/useResponsiveVisibility";
+import { FullPageLoader } from "./FullPageLoader";
+import Link from "next/link";
 
 // 1. Define the shape of your data
 interface ImageData {
-  src: StaticImageData;
+  src: string;
   alt: string;
   title: string;
+  slug: string;
 }
 
-interface GalleryProps {
-  items: ImageData[];
-}
-
-const RandomBorderCard = ({ src, alt, title }: ImageData) => {
+const RandomBorderCard = ({ src, alt, title, slug }: ImageData) => {
   const [borderRadius, setBorderRadius] = useState<string>("");
   const smallScreen = useResponsiveVisibility(640, "max");
 
@@ -35,9 +36,12 @@ const RandomBorderCard = ({ src, alt, title }: ImageData) => {
   }, [smallScreen]);
 
   return (
-    <div className="flex flex-col items-center min-w-[150.3px] sm:min-w-[313px]">
+    <Link
+      href={`/projects/${slug}`}
+      className="flex flex-col items-center group min-w-[150.3px] sm:min-w-[313px]"
+    >
       <div
-        className="relative overflow-hidden w-full bg-gray-200 transition-all duration-700 ease-in-out shadow-xl group h-[180.1px] sm:h-[400px]"
+        className="relative overflow-hidden w-full bg-gray-200 transition-all duration-700 ease-in-out shadow-xl h-[180.1px] sm:h-[400px]"
         style={{
           borderRadius,
         }}
@@ -56,21 +60,30 @@ const RandomBorderCard = ({ src, alt, title }: ImageData) => {
         </h3>
         <div className="border-l border-l-black min-h-[120px] sm:min-h-[200px]" />
       </div>
-    </div>
+    </Link>
   );
 };
 
-const RandomBorderGallery = ({ items }: GalleryProps) => {
+const RandomBorderGallery = () => {
+  const { data, isPending } = useAllAdminProjects();
+
+  const projectData = data?.data || [];
+
+  if (isPending) {
+    <FullPageLoader className="h-[30vh]! justify-center! flex" />;
+  }
   return (
     <div className="flex overflow-scroll gap-6 sm:gap-[50px] px-6 sm:px-[50px] scrollbar-hide">
-      {items.map((item, index) => (
-        <RandomBorderCard
-          key={index}
-          src={item.src}
-          alt={item.alt}
-          title={item.title}
-        />
-      ))}
+      {projectData &&
+        projectData?.map((item, index) => (
+          <RandomBorderCard
+            key={index}
+            src={item?.imgUrls?.[0]?.url || ""}
+            alt={item.title}
+            title={item.title}
+            slug={item.slug}
+          />
+        ))}
     </div>
   );
 };

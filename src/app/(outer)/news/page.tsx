@@ -1,16 +1,16 @@
 "use client";
 import Image from "next/image";
 import Link from "next/link";
+import React from "react";
 import clsx from "clsx";
 
 import { useAllAdminNews } from "@/app/features/news/api/useAllAdminNews";
 import { FullPageLoader } from "@/app/components/FullPageLoader";
-import { FUNDED_TYPE, NEWS_DATA } from "@/app/utils/data";
+import { getFormattedDayMonthYear } from "@/app/utils/utils";
 import LetConnect from "@/app/components/LetConnect";
+import { FUNDED_TYPE } from "@/app/utils/data";
 
 import newsImg from "../../../../public/newsImg.png";
-import { getFormattedDayMonthYear } from "@/app/utils/utils";
-import React from "react";
 
 const Page = () => {
   const { data, isPending } = useAllAdminNews();
@@ -47,7 +47,7 @@ const Page = () => {
         </div>
         <div className="flex">
           <div className="h-full border-r border-r-black" />
-          <div className="w-full">
+          <div className="w-full flex-col flex">
             {data &&
               data?.data?.map((data, index) => {
                 return (
@@ -56,10 +56,10 @@ const Page = () => {
                     onMouseLeave={() => setActiveHover(null)}
                     href={`/news/${data.slug}`}
                     key={data.slug}
-                    className="relative block group"
+                    className="relative group block w-full h-full!"
                   >
-                    <div className="pl-6  sm:pl-6 lg:pl-10 pr-6 group sm:pr-[50px] py-[30px] flex flex-col xl:flex-row xl:item-start gap-6 justify-between">
-                      <p className="text-[24px] capitalize group-hover:text-white max-w-[345px] sm:max-w-[450px]">
+                    <div className="pl-6  sm:pl-6 lg:pl-10 h-full pr-6 group sm:pr-[50px] py-[30px] flex flex-col xl:flex-row xl:items-center gap-6 justify-between">
+                      <p className="text-[24px] line-clamp-1 leading-[100%] capitalize group-hover:text-white max-w-[345px] sm:max-w-[450px]">
                         {data.title}
                       </p>
                       <div className="flex items-center gap-6">
@@ -77,8 +77,8 @@ const Page = () => {
                         "absolute h-0 w-full group-hover:h-full bg-black transition-all duration-200 top-[50%] translate-y-[-50%] left-0 -z-1 self-center"
                       )}
                     />
-                    {index < FUNDED_TYPE.length && (
-                      <div className="border-t-black border-t" />
+                    {index < FUNDED_TYPE.length - 3 && (
+                      <div className="border-t-black border-t absolute w-full bottom-0" />
                     )}
                   </Link>
                 );

@@ -9,7 +9,7 @@ const Footer = () => {
   const SOCIALS = [
     {
       title: "INSTAGRAM",
-      link: "http://wa.me/+31234568188",
+      link: "",
     },
     {
       title: "LINKEDIN",
@@ -28,23 +28,23 @@ const Footer = () => {
   const WEB_LINKS = [
     {
       title: "ABOUT US",
-      link: "http://wa.me/+31234568188",
+      link: "/about-us",
     },
     {
       title: "WHO WE WORK WITH",
-      link: "",
+      link: "/who-we-work-with",
     },
     {
       title: "PROJECTS",
-      link: "",
+      link: "/projects",
     },
     {
       title: "NEWS",
-      link: " ",
+      link: "/news",
     },
     {
       title: "CONTACT US",
-      link: " ",
+      link: "/contact-us",
     },
   ];
   return (

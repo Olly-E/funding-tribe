@@ -52,9 +52,6 @@ const Navbar = () => {
     handleClickOnDropDownButton,
   } = useComponentVisible();
   const pathname = usePathname();
-  const handleClick = () => {
-    console.log("click");
-  };
 
   return (
     <div className="">

@@ -63,3 +63,10 @@ export interface UploadEventPhotoSectionProps {
   className?: string;
   label?: string;
 }
+
+export interface ImageData {
+  src: string;
+  alt: string;
+  title: string;
+  slug: string;
+}

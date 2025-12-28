@@ -86,7 +86,7 @@ export default function Home() {
           <div className="size-[15px] min-w-[15px] bg-black" />
           <p className="text-left w-full">FUNDED PROJECTS</p>
         </div>
-        <RandomBorderGallery items={PROJECT_DATA} />
+        <RandomBorderGallery />
       </section>
     </div>
   );

@@ -62,7 +62,7 @@ const NewsDetailsPage = () => {
             )}
             <div className="flex items-center justify-between gap-10 mt-15 text-xs ">
               <p>{getFormattedDayMonthYear(createdAt as Date)}</p>
-              <p>FUNDING</p>
+              <p>{category || ""}</p>
             </div>
 
             <div className="mt-6 sm:mt-10">
