@@ -1,13 +1,7 @@
-import Link from "next/link";
-import React from "react";
+import { email, phone } from "@/app/utils/utils";
 
 const ContactUsPage = () => {
-  const emailUser = "contact";
-  const emailDomain = "fundingtribe";
-  const emailTld = "co.uk";
-  const phoneParts = ["+44", "20", "3904", "7188"];
-  const phone = phoneParts.join("");
-  const email = `${emailUser}@${emailDomain}.${emailTld}`;
+
 
   return (
     <div>
@@ -37,7 +31,7 @@ const ContactUsPage = () => {
             </p>
             <div className="border-t border-t-black w-full mt-[50px]" />
           </div>
-          <a href={`tel:${phone}`} className="block" aria-label="Phone number">
+          <a target="_blank" href={`tel:${phone}`} className="block" aria-label="Phone number">
             <div className="flex items-center gap-2.5 mt-[50px]">
               <div className="size-[15px] min-w-[15px] bg-black" />
               <p className="text-left w-full whitespace-nowrap">PHONE</p>
@@ -51,6 +45,7 @@ const ContactUsPage = () => {
           </a>
           <a
             href={`mailto:${email}`}
+            target="_blank"
             className="block"
             aria-label="Email address"
           >

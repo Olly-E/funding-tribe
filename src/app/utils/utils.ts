@@ -38,3 +38,10 @@ export const getFormattedDayMonthYear = (date: Date | null) => {
   if (!date) return "";
   return dayjs(date).format("YYYY.MM.DD");
 };
+
+const emailUser = "contact";
+const emailDomain = "fundingtribe";
+const emailTld = "co.uk";
+const phoneParts = ["+44", "20", "3904", "7188"];
+export const phone = phoneParts.join("");
+export const email = `${emailUser}@${emailDomain}.${emailTld}`;

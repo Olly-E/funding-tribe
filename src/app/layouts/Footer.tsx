@@ -47,6 +47,13 @@ const Footer = () => {
       link: "/contact-us",
     },
   ];
+
+  const emailUser = "contact";
+  const emailDomain = "fundingtribe";
+  const emailTld = "co.uk";
+  const phoneParts = ["+44", "20", "3904", "7188"];
+  const phone = phoneParts.join("");
+  const email = `${emailUser}@${emailDomain}.${emailTld}`;
   return (
     <footer className="bg-black">
       <div className="md:pl-[50px] grid grid-cols-2 md:grid-cols-3">
@@ -103,18 +110,23 @@ const Footer = () => {
       </div>
       <div className="border-t border-t-white" />
       <div className="sm:h-[102px] xs:space-y-0 space-y-10 py-10 sm:py-0 gap-4 gap-y-10 xs:grid xs:grid-cols-2 sm:grid-cols-3 text-xs items-center pl-6 sm:pl-[50px] text-white">
-        <Link href="" className="pl-0.5 uppercase inline-block">
-          info@fundingtribe.co.uk
-        </Link>
-        <Link href="" className="xs:pl-6 block sm:pl-[53px]">
-          +44(0) 20 39047188
-        </Link>
-        <Link
-          href=""
-          className="max-w-[169px] inline-block sm:max-w-[273px] sm:mt-0 sm:pl-[50.5px] uppercase col-span-2 sm:col-span-1"
+        <a
+          href={`mailto:${email}`}
+          target="_blank"
+          className="pl-0.5 uppercase inline-block"
         >
+          info@fundingtribe.co.uk
+        </a>
+        <a
+          target="_blank"
+          href={`tel:${phone}`}
+          className="xs:pl-6 block sm:pl-[53px]"
+        >
+          +44(0) 20 39047188
+        </a>
+        <div className="max-w-[169px] inline-block sm:max-w-[273px] sm:mt-0 sm:pl-[50.5px] uppercase col-span-2 sm:col-span-1">
           Level 33, 25 Canada Square, Canary Wharf, London, E14 5LB 
-        </Link>
+        </div>
       </div>
       <div className="border-t border-t-white" />
       <div className="sm:h-[102px] grid grid-cols-2 sm:grid-cols-3 text-xs items-center sm:pl-[50px] text-white">

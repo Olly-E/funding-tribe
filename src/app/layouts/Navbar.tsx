@@ -7,9 +7,9 @@ import clsx from "clsx";
 import { useComponentVisible } from "../hooks/useComponentVisible";
 import HamburgerMenu from "../components/HamburgerMenu";
 import CustomCursor from "../components/CustomCursor";
+import { email, phone } from "../utils/utils";
 
 import logo from "../../../public/logo.svg";
-
 
 const Navbar = () => {
   const NAV_LINKS = [
@@ -155,16 +155,25 @@ const Navbar = () => {
         </div>
         <div className="">
           <div className="border-b border-b-black" />
-          <p className="text-xs uppercase py-4 pl-6">
-            {" "}
+          <a
+            href={`mailto:${email}`}
+            target="_blank"
+            className="text-xs uppercase py-4 pl-6"
+          >
             info@fundingtribe.co.uk
-          </p>
+          </a>
           <div className="border-b border-b-black" />
           <p className="text-xs uppercase py-4 pl-6">
             Level 33, 25 Canada Square, Canary Wharf, London, E14 5LB 
           </p>
           <div className="border-b border-b-black" />
-          <p className="text-xs uppercase py-4 pl-6">+44(0) 20 39047188 </p>
+          <a
+            target="_blank"
+            href={`tel:${phone}`}
+            className="text-xs uppercase py-4 pl-6"
+          >
+            +44(0) 20 39047188{" "}
+          </a>
           <div className="border-b border-b-black" />
           <p className="text-xs uppercase py-4 pl-6">© 2025 FUNDING TRIBE</p>
         </div>
