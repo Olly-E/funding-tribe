@@ -26,6 +26,7 @@ const ProjectDetailsPage = () => {
           <div className="border-t-black border-t block" />
           <div className="py-8 md:pt-[60px] px-6 sm:px-[50px] md:pb-[200px]">
             <div
+              className="wysiwyg"
               dangerouslySetInnerHTML={{
                 __html: description || "",
               }}
@@ -55,8 +56,8 @@ const ProjectDetailsPage = () => {
             <div className="mt-20">No Image Uploaded</div>
           )}
           <div className="border-t border-t-black md:border-l-black md:border-l h-full block" />
-          <h1 className="py-12 px-6 lg:max-w-[567px] mx-auto sm:mx-0 md:hidden">
-            Bexley Road, Northumberland Heath
+          <h1 className="py-12 px-6 lg:max-w-[567px] mx-auto sm:mx-0 md:hidden mt-10">
+            {title}
           </h1>
         </div>
       </section>

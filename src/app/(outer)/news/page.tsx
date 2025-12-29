@@ -25,12 +25,13 @@ const Page = () => {
   }
   return (
     <div>
-      <section className="pt-[149px] lg:pt-[60px] pb-[119px] sm:pb-[141px] px-6 sm:px-[50px] ">
+      <section className="pt-[149px] lg:pt-[60px] pb-[109px] sm:pb-[141px] px-6 sm:px-[50px] ">
         <h1 className="text-center">NEWS & INSIGHTS</h1>
-        <p className="md:w-[785px] text-center mx-auto text-[24px] md:text-[32px] leading-[100%] mt-[50px]">
-          Welcome to Funding Tribe News — short updates, <br /> real stories,
-          and honest insights from our journey <br /> of building and funding
-          better together.
+        <p className="md:w-[785px] text-center mx-auto text-[24px] md:text-[32px] leading-[132%] sm:leading-[100%] mt-6 sm:mt-[50px]">
+          Welcome to Funding Tribe News — short updates,{" "}
+          <br className="hidden sm:block" /> real stories, and honest insights
+          from our journey <br className="hidden sm:block" /> of building and
+          funding better together.
         </p>
       </section>
       <div className="border-t-black border-t" />

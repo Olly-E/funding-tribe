@@ -3,12 +3,12 @@ import { useParams } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
 
-import newsImg from "../../../../../public/newsImg.png";
-
 import { useNewsDetails } from "@/app/features/news/api/useAdminNewsDetails";
 import { FullPageLoader } from "@/app/components/FullPageLoader";
 import { getFormattedDayMonthYear } from "@/app/utils/utils";
 import LetConnect from "@/app/components/LetConnect";
+
+import newsImg from "../../../../../public/newsImg.png";
 
 const NewsDetails = () => {
   const id = useParams()?.id;
@@ -49,6 +49,7 @@ const NewsDetails = () => {
               dangerouslySetInnerHTML={{
                 __html: description || "",
               }}
+              className="wysiwyg"
             />
             <Link
               href="#sticky"

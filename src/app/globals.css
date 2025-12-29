@@ -81,3 +81,8 @@ h1 {
     width: 100%;
   }
 }
+
+.wysiwyg b {
+  font-size: 24px;
+  font-weight: 700;
+}

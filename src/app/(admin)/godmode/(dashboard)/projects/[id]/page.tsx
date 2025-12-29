@@ -37,6 +37,7 @@ const Page = () => {
             <div className="border-t-black border-t block" />
             <div className="py-8 md:pt-[60px] px-6 sm:px-[50px] md:pb-[200px]">
               <div
+                className="wysiwyg"
                 dangerouslySetInnerHTML={{
                   __html: description || "",
                 }}

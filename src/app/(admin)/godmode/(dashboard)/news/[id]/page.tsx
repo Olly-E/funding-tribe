@@ -67,6 +67,7 @@ const NewsDetailsPage = () => {
 
             <div className="mt-6 sm:mt-10">
               <div
+                className="wysiwyg"
                 dangerouslySetInnerHTML={{
                   __html: description || "",
                 }}
