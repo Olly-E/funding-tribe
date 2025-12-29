@@ -56,7 +56,7 @@ const Navbar = () => {
   return (
     <div className="">
       <CustomCursor isModalOpen={isComponentVisible} />
-      <div className="h-[50px] fixed bg-white min-h-[30px] lg:h-auto xl:h-[30px] flex w-full pr-6 sm:pr-[50px] lg:pr-0 justify-between lg:justify-normal lg:relative z-40">
+      <div className="h-[50px] fixed bg-white min-h-[30px] lg:h-auto xl:h-[30px] flex w-full pr-6 sm:pr-[50px] lg:pr-0 justify-between lg:justify-normal lg:relative z-47">
         <Link
           href="/"
           className="pl-6 sm:px-[50px] self-center flex items-center w-fit h-full"
@@ -115,7 +115,7 @@ const Navbar = () => {
           transition: "clip-path 300ms ease-in-out",
         }}
       >
-        <div className="">
+        <div className="border-t border-t-black">
           {NAV_LINKS.map((link) => {
             return (
               <Link
@@ -158,7 +158,7 @@ const Navbar = () => {
           <a
             href={`mailto:${email}`}
             target="_blank"
-            className="text-xs uppercase py-4 pl-6"
+            className="text-xs uppercase block py-4 pl-6"
           >
             info@fundingtribe.co.uk
           </a>
@@ -166,7 +166,7 @@ const Navbar = () => {
           <a
             href={mapAddress}
             target="_blank"
-            className="text-xs uppercase py-4 pl-6"
+            className="text-xs uppercase py-4 pl-6 block"
           >
             Level 33, 25 Canada Square, Canary Wharf, London, E14 5LB 
           </a>
@@ -174,7 +174,7 @@ const Navbar = () => {
           <a
             target="_blank"
             href={`tel:${phone}`}
-            className="text-xs uppercase py-4 pl-6"
+            className="text-xs uppercase py-4 pl-6 block"
           >
             +44(0) 20 39047188{" "}
           </a>
