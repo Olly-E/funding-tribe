@@ -49,11 +49,11 @@ const Footer = () => {
     },
   ];
 
+  const phoneParts = ["+44", "20", "3904", "7188"];
   const emailUser = "contact";
   const emailDomain = "fundingtribe";
   const emailTld = "co.uk";
-  const phoneParts = ["+44", "20", "3904", "7188"];
-  const phone = phoneParts.join("");
+
   const email = `${emailUser}@${emailDomain}.${emailTld}`;
   return (
     <footer className="bg-black">
@@ -116,22 +116,22 @@ const Footer = () => {
           target="_blank"
           className="pl-0.5 uppercase inline-block"
         >
-          info@fundingtribe.co.uk
+          contact@fundingtribe.co.uk
         </a>
         <a
           target="_blank"
-          href={`tel:${phone}`}
+          href={`tel:${phoneParts}`}
           className="xs:pl-6 block sm:pl-[53px]"
         >
           +44(0) 20 39047188
         </a>
-        <a
+        {/* <a
           href={mapAddress}
           target="_blank"
           className="max-w-[169px] inline-block sm:max-w-[273px] sm:mt-0 sm:pl-[50.5px] uppercase col-span-2 sm:col-span-1"
         >
           Level 33, 25 Canada Square, Canary Wharf, London, E14 5LB 
-        </a>
+        </a> */}
       </div>
       <div className="border-t border-t-white" />
       <div className="sm:h-[102px] grid grid-cols-2 sm:grid-cols-3 text-xs items-center sm:pl-[50px] text-white">

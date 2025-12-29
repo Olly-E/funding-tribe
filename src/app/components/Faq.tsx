@@ -4,7 +4,6 @@ import { ArrowDown } from "lucide-react";
 import { useState } from "react";
 import clsx from "clsx";
 
-
 interface faqDataProps {
   faqData: {
     title: string;
@@ -13,7 +12,7 @@ interface faqDataProps {
   }[];
 }
 export const Faq = ({ faqData }: faqDataProps) => {
-  const [activeFaqIndex, setActiveFaqIndex] = useState<null | number>(0);
+  const [activeFaqIndex, setActiveFaqIndex] = useState<null | number>(null);
 
   const handleChangeFaQ = (index: number | null) => {
     setActiveFaqIndex((prevIndex) => (prevIndex === index ? null : index));

@@ -42,9 +42,10 @@ export async function POST(request: Request) {
 export async function GET() {
   try {
     await dbConnect();
-    const projects = await Project.find()
-      .select("_id title description imgUrls createdAt slug updatedAt")
-      .sort({ createdAt: -1 });
+    const projects = await Project.find().select(
+      "_id title description imgUrls createdAt slug updatedAt"
+    );
+
     return NextResponse.json(
       { message: "Projects fetched successfully", data: projects },
       { status: 200 }
