@@ -19,7 +19,7 @@ const ContactUsPage = () => {
           <div className="border-t w-[calc(100vw-10px)] -translate-x-6 sm:translate-x-[-50px] md:translate-x-0 md:w-auto border-t-black md:border-l md:border-l-black md:h-full" />
         </div>
         <div className="py-20 sm:py-[136px] md:pl-[50px] lg:pl-[135px]">
-          <div>
+          {/* <div>
             <div className="flex items-center gap-2.5">
               <div className="size-[15px] min-w-[15px] bg-black" />
               <p className="text-left w-full whitespace-nowrap">ADDRESS</p>
@@ -32,7 +32,7 @@ const ContactUsPage = () => {
               Level 33, 25 Canada Square, Canary Wharf, London, E14 5L
             </a>
             <div className="border-t border-t-black w-full mt-[50px]" />
-          </div>
+          </div> */}
           <a
             target="_blank"
             href={`tel:${phone}`}
