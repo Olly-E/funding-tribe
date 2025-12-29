@@ -2,6 +2,13 @@ import Link from "next/link";
 import React from "react";
 
 const ContactUsPage = () => {
+  const emailUser = "contact";
+  const emailDomain = "fundingtribe";
+  const emailTld = "co.uk";
+  const phoneParts = ["+44", "20", "3904", "7188"];
+  const phone = phoneParts.join("");
+  const email = `${emailUser}@${emailDomain}.${emailTld}`;
+
   return (
     <div>
       <section className="flex flex-col w-full md:flex-row px-6 sm:px-[50px] ">
@@ -20,7 +27,7 @@ const ContactUsPage = () => {
           <div className="border-t w-[calc(100vw-10px)] -translate-x-6 sm:translate-x-[-50px] md:translate-x-0 md:w-auto border-t-black md:border-l md:border-l-black md:h-full" />
         </div>
         <div className="py-20 sm:py-[136px] md:pl-[50px] lg:pl-[135px]">
-          <Link href="/">
+          <div>
             <div className="flex items-center gap-2.5">
               <div className="size-[15px] min-w-[15px] bg-black" />
               <p className="text-left w-full whitespace-nowrap">ADDRESS</p>
@@ -29,26 +36,33 @@ const ContactUsPage = () => {
               Level 33, 25 Canada Square, Canary Wharf, London, E14 5L
             </p>
             <div className="border-t border-t-black w-full mt-[50px]" />
-          </Link>
-          <Link href="/">
+          </div>
+          <a href={`tel:${phone}`} className="block" aria-label="Phone number">
             <div className="flex items-center gap-2.5 mt-[50px]">
               <div className="size-[15px] min-w-[15px] bg-black" />
               <p className="text-left w-full whitespace-nowrap">PHONE</p>
             </div>
+
             <p className="uppercase font-bold text-[20px] sm:text-[24px] mt-10">
-              +44(0) 20 39047188
+              {phone}
             </p>
+
             <div className="border-t border-t-black w-full mt-[50px]" />
-          </Link>
-          <Link href="/">
+          </a>
+          <a
+            href={`mailto:${email}`}
+            className="block"
+            aria-label="Email address"
+          >
             <div className="flex items-center gap-2.5 mt-[50px]">
               <div className="size-[15px] min-w-[15px] bg-black" />
               <p className="text-left w-full whitespace-nowrap">EMAIL</p>
             </div>
+
             <p className="uppercase font-bold truncate text-[20px] sm:text-[24px] mt-10">
-              contact@fundingtribe.co.uk
+              {email}
             </p>
-          </Link>
+          </a>
         </div>
       </section>
     </div>

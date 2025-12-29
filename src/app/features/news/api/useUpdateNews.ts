@@ -11,7 +11,7 @@ export const useUpdateNews = (newsId: string) => {
   const queryClient = useQueryClient();
   return useMutation<Response, AxiosErrorResponse, AddNewsPayload>({
     mutationFn: (payload) =>
-      fetchData<AddNewsPayload>(`/api/news/${newsId}/`, "PUT", payload),
+      fetchData<AddNewsPayload>(`/api/news/${newsId}`, "PUT", payload),
     onSuccess: () => {
       toast.success("News updated.");
       queryClient.invalidateQueries({

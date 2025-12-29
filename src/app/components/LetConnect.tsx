@@ -6,7 +6,7 @@ const LetConnect = () => {
   return (
     <div className="flex items-center gap-2 sm:gap-5 group my-20 sm:my-[165px] justify-center nx-auto w-fit mx-auto">
       <Link
-        href=""
+        href="/contact-us"
         className="text-black group whitespace-nowrap inline-block font-bold text-[32px] sm:text-[64px] underline"
       >
         LET&apos;S CONNECT

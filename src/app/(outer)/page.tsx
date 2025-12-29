@@ -3,8 +3,8 @@ import Image from "next/image";
 import Link from "next/link";
 
 import RandomBorderGallery from "../components/RandomBorderImage";
-import { FAQ_DATA, PROJECT_DATA } from "../utils/data";
 import { Button } from "../components/Button";
+import { FAQ_DATA } from "../utils/data";
 import { Faq } from "../components/Faq";
 
 import trailingArrow from "../../../public/trailingArrow.svg";

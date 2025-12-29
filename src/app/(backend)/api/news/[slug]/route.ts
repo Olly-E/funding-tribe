@@ -29,6 +29,7 @@ export async function PUT(
         ...(title && { title }),
         ...(description && { description }),
         ...(imgUrl && { imgUrl }),
+        ...(category && { category }),
       },
       { new: true, runValidators: true }
     ).select("_id title slug imgUrl category createdAt updatedAt");
