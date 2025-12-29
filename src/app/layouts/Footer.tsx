@@ -127,6 +127,7 @@ const Footer = () => {
         </a>
         <a
           href={mapAddress}
+          target="_blank"
           className="max-w-[169px] inline-block sm:max-w-[273px] sm:mt-0 sm:pl-[50.5px] uppercase col-span-2 sm:col-span-1"
         >
           Level 33, 25 Canada Square, Canary Wharf, London, E14 5LB 

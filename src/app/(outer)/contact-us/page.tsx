@@ -1,8 +1,6 @@
-import { email, phone } from "@/app/utils/utils";
+import { email, mapAddress, phone } from "@/app/utils/utils";
 
 const ContactUsPage = () => {
-
-
   return (
     <div>
       <section className="flex flex-col w-full md:flex-row px-6 sm:px-[50px] ">
@@ -26,12 +24,21 @@ const ContactUsPage = () => {
               <div className="size-[15px] min-w-[15px] bg-black" />
               <p className="text-left w-full whitespace-nowrap">ADDRESS</p>
             </div>
-            <p className="uppercase font-bold text-[20px] sm:text-[24px] mt-10">
+            <a
+              href={mapAddress}
+              target="_blank"
+              className="uppercase font-bold text-[20px] sm:text-[24px] mt-10"
+            >
               Level 33, 25 Canada Square, Canary Wharf, London, E14 5L
-            </p>
+            </a>
             <div className="border-t border-t-black w-full mt-[50px]" />
           </div>
-          <a target="_blank" href={`tel:${phone}`} className="block" aria-label="Phone number">
+          <a
+            target="_blank"
+            href={`tel:${phone}`}
+            className="block"
+            aria-label="Phone number"
+          >
             <div className="flex items-center gap-2.5 mt-[50px]">
               <div className="size-[15px] min-w-[15px] bg-black" />
               <p className="text-left w-full whitespace-nowrap">PHONE</p>

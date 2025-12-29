@@ -163,7 +163,11 @@ const Navbar = () => {
             info@fundingtribe.co.uk
           </a>
           <div className="border-b border-b-black" />
-          <a href={mapAddress} className="text-xs uppercase py-4 pl-6">
+          <a
+            href={mapAddress}
+            target="_blank"
+            className="text-xs uppercase py-4 pl-6"
+          >
             Level 33, 25 Canada Square, Canary Wharf, London, E14 5LB 
           </a>
           <div className="border-b border-b-black" />
