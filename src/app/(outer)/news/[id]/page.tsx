@@ -52,7 +52,7 @@ const NewsDetails = () => {
               className="wysiwyg"
             />
             <Link
-              href="#sticky"
+              href="/news"
               className="mt-20 inline-block text-[24px] group relative underline-offset-2"
             >
               <p className="whitespace-nowrap underline md:no-underline">

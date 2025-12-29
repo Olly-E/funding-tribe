@@ -57,6 +57,8 @@ export default function Home() {
           <Button
             className="mb-[31px] lg:mb-30 group block xl:hidden lg:ml-auto"
             showArrow={true}
+            as="link"
+            href="/about-us"
           >
             Learn More
           </Button>

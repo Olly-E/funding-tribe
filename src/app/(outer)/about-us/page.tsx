@@ -72,6 +72,8 @@ const page = () => {
             </p>
             <Button
               showArrow={true}
+              href="/contact-us"
+              as="link"
               className="group w-full justify-between! mt-[70px]"
             >
               Be A Part Of The Movement
