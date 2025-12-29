@@ -58,7 +58,7 @@ const ProjectCard = ({ image, title, slug }: IProjectCard) => {
         </p>
         <div className="border-r border-r-black h-[100px]" />
       </div>
-      <div className="mt-2 items-center gap-2 w-fit rounded-md flex sm:hidden sm:group-hover:flex absolute top-2 left-2 z-10">
+      <div className="mt-2 items-center gap-2 w-fit rounded-md flex sm:hidden sm:group-hover:flex absolute top-2 left-2 z-1">
         <button
           onClick={handleDeleteProject}
           disabled={deletePending}

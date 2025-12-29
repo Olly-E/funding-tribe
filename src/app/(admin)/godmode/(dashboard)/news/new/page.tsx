@@ -127,8 +127,8 @@ const NewNewsPage = () => {
     return <FullPageLoader className="h-[60vh]! " />;
   }
   return (
-    <form className="px-6" onSubmit={handleSubmit(onSubmit)}>
-      <div className="sm:w-[644px] mx-auto my-[25px] px-6 sm:px-[50px] rounded-[20px] border border-black bg-[#FFFFFF] py-6 sm:py-[50px]">
+    <form className="sm:px-6" onSubmit={handleSubmit(onSubmit)}>
+      <div className="sm:w-[644px] mx-auto my-[25px] px-6 sm:px-[50px] sm:rounded-[20px] border-y border-y-black sm:border sm:border-black bg-[#FFFFFF] py-6 sm:py-[50px]">
         <Link
           href="/godmode/news"
           className="hover:bg-black size-9 mb-4 centered rounded-full group group-hover:bg-black transition-colors"

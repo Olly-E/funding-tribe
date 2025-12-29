@@ -60,7 +60,7 @@ const Page = () => {
                     className="relative group block w-full h-full!"
                   >
                     <div className="pl-6  sm:pl-6 lg:pl-10 h-full pr-6 group sm:pr-[50px] py-[30px] flex flex-col xl:flex-row xl:items-center gap-6 justify-between">
-                      <p className="text-[24px] line-clamp-1 leading-[100%] capitalize group-hover:text-white max-w-[345px] sm:max-w-[450px]">
+                      <p className="text-[24px] font-bold line-clamp-1 leading-[100%] capitalize group-hover:text-white max-w-[345px] sm:max-w-[450px]">
                         {data.title}
                       </p>
                       <div className="flex items-center gap-6">

@@ -47,7 +47,7 @@ const NewsCard = ({ slug, title, img }: INewsCard) => {
         <p className="text-sm uppercase font-bold w-full md:w-[184px] h-full">
           {title}
         </p>
-        <div className="mt-2 items-center gap-2 w-fit rounded-md hidden group-hover:flex absolute top-2 left-2 z-10">
+        <div className="mt-2 items-center gap-2 w-fit rounded-md sm:hidden sm:group-hover:flex flex absolute top-2 left-2 z-1">
           <button
             type="button"
             onClick={handleDeleteNews}
