@@ -4,7 +4,6 @@ import Link from "next/link";
 import AnimatedArrow from "../components/AnimatedArrow";
 
 import whiteLogo from "../../../public/whiteLogo.svg";
-import { mapAddress } from "../utils/utils";
 
 const Footer = () => {
   const SOCIALS = [

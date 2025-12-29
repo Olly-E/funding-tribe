@@ -5,9 +5,9 @@ import Link from "next/link";
 import clsx from "clsx";
 
 import { useComponentVisible } from "../hooks/useComponentVisible";
-import { email, mapAddress, phone } from "../utils/utils";
 import HamburgerMenu from "../components/HamburgerMenu";
 import CustomCursor from "../components/CustomCursor";
+import { email, phone } from "../utils/utils";
 
 import logo from "../../../public/logo.svg";
 
