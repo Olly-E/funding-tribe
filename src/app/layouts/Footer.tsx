@@ -4,6 +4,7 @@ import Link from "next/link";
 import AnimatedArrow from "../components/AnimatedArrow";
 
 import whiteLogo from "../../../public/whiteLogo.svg";
+import { mapAddress } from "../utils/utils";
 
 const Footer = () => {
   const SOCIALS = [
@@ -124,9 +125,12 @@ const Footer = () => {
         >
           +44(0) 20 39047188
         </a>
-        <div className="max-w-[169px] inline-block sm:max-w-[273px] sm:mt-0 sm:pl-[50.5px] uppercase col-span-2 sm:col-span-1">
+        <a
+          href={mapAddress}
+          className="max-w-[169px] inline-block sm:max-w-[273px] sm:mt-0 sm:pl-[50.5px] uppercase col-span-2 sm:col-span-1"
+        >
           Level 33, 25 Canada Square, Canary Wharf, London, E14 5LB 
-        </div>
+        </a>
       </div>
       <div className="border-t border-t-white" />
       <div className="sm:h-[102px] grid grid-cols-2 sm:grid-cols-3 text-xs items-center sm:pl-[50px] text-white">

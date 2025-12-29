@@ -45,3 +45,5 @@ const emailTld = "co.uk";
 const phoneParts = ["+44", "20", "3904", "7188"];
 export const phone = phoneParts.join("");
 export const email = `${emailUser}@${emailDomain}.${emailTld}`;
+export const mapAddress =
+  "https://www.google.com/maps/place/Floor+33,+25+Canada+Square,+Canary+Wharf+Estate,+London+E14+5LB,+UK/@51.504237,-0.0207889,17z/data=!3m2!4b1!5s0x487602b9fb72113b:0x6e045060ab585548!4m6!3m5!1s0x487602b9fc94624b:0x601d428d6c548f64!8m2!3d51.504237!4d-0.018214!16s%2Fg%2F11sn006tjd?entry=ttu&g_ep=EgoyMDI1MTIwOS4wIKXMDSoASAFQAw%3D%3D";

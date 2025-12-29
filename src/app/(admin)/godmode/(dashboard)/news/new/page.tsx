@@ -42,7 +42,6 @@ const NewNewsPage = () => {
   const editMode = !!params;
   const [removeAllFilesFn, setRemoveAllFilesFn] = React.useState<() => void>();
 
-  console.log({ existingImgs });
 
   const {
     register,
