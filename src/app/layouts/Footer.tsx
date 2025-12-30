@@ -9,7 +9,7 @@ const Footer = () => {
   const SOCIALS = [
     {
       title: "INSTAGRAM",
-      link: "",
+      link: "https://www.instagram.com/fundingtribe?igsh=MXQxYmJpdHB1dDRhZg==",
     },
     {
       title: "LINKEDIN",

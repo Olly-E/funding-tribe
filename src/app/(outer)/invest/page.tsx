@@ -43,7 +43,7 @@ const page = () => {
                   src={investImg1}
                   fill
                   alt="stairs"
-                  className="object-cover grayscale"
+                  className="object-cover"
                 />
               </div>
             </div>
@@ -60,7 +60,7 @@ const page = () => {
                   src={investImg2}
                   fill
                   alt="stairs"
-                  className="object-cover grayscale"
+                  className="object-cover"
                 />
               </div>
             </div>
