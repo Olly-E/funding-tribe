@@ -121,7 +121,7 @@ const Page = () => {
         <Image
           src={blackLogo}
           alt="stairs"
-          className="object-cover w-[140px] sm:w-[152.52px] h-auto mx-auto"
+          className="object-cover w-[100px] sm:w-[107px] h-auto mx-auto"
         />
         <p className="md:w-[750px] text-center mx-auto text-[24px] sm:text-[32px] leading-[100%] mt-12">
           Funding Tribe exists for people who believe in{" "}
